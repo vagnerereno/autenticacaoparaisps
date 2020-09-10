@@ -1,0 +1,42 @@
+usertype UniqueCode;
+hashfunction H;
+secret OTAC: UniqueCode;
+const HMAC: Function;
+
+protocol OTACG(KGC,Tecnico,ISP,Cliente){
+	role KGC {
+		send_3(KGC,Cliente,H(OTAC)); // ATUALIZA OTAC DO CLIENTE
+		send_4(KGC,Tecnico,H(OTAC)); // ATUALIZA OTAC DO TECNICO
+		send_5(KGC,ISP,H(OTAC));  // ATUALIZA OTAC DA ISP
+	}
+
+	role Tecnico {
+		var iS: Nonce;
+		fresh idAtendimento, iT, nonce, foto: Nonce;
+		send_1(Tecnico, ISP, nonce, foto, idAtendimento, iT, HMAC(idAtendimento, iT)); // 3 GERA QR CODE E ENVIA PARA ISP
+		recv_6(ISP, Tecnico, nonce, foto, idAtendimento, iS, HMAC(idAtendimento, iS)); //recebe as info do tec
+		recv_4(KGC, Tecnico, H(OTAC)); // ATUALIZA OTAC DO TECNICO
+		claim(Tecnico, Secret, OTAC);
+}
+
+	role ISP {
+		var iT, iC: Nonce;
+		fresh idAtendimento, iS, nonce, foto: Nonce;
+		recv_1(Tecnico, ISP, nonce, foto, idAtendimento, iT, HMAC(idAtendimento, iT)); // recebe solicitacao de autenticao
+		recv_2(Cliente, ISP, nonce, foto, idAtendimento, iC, HMAC(idAtendimento, iC)); // recebe solicitacao de autenticacao
+		send_6(ISP, Tecnico, nonce, foto, idAtendimento, iS, HMAC(idAtendimento, iS)); // MANDA PRO TEC AS INFO DO CLIENTE
+		send_7(ISP, Cliente, nonce, foto, idAtendimento, iS, HMAC(idAtendimento, iS)); // MANDA PRO TEC AS INFO DO CLIENTE
+		recv_5(KGC, ISP, H(OTAC)); // atualiza otac da isp
+		claim(ISP, Secret, OTAC);
+	}
+	
+	role Cliente {
+		fresh nonce, foto, idAtendimento, iC: Nonce;
+		var iS: Nonce;
+		send_2(Cliente, ISP, nonce, foto, idAtendimento, iC, HMAC(idAtendimento, iC)); // solicita autenticacao
+		recv_7(ISP, Cliente, nonce, foto, idAtendimento, iS, HMAC(idAtendimento, iS)); // recebe as info do tec
+		recv_3(KGC,Cliente,H(OTAC)); // ATUALIZA OTAC DO CLIENTE
+		claim(Cliente, Secret, OTAC);
+}
+}
+
