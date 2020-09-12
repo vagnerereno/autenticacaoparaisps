@@ -1,42 +1,82 @@
 usertype UniqueCode;
 hashfunction H;
-secret OTAC: UniqueCode;
+secret OTAC-cliente: UniqueCode;
+secret OTAC-tecnico: UniqueCode;
+secret OTAC-isp: UniqueCode;
 const HMAC: Function;
+secret sk: Function;
 
 protocol OTACG(KGC,Tecnico,ISP,Cliente){
 	role KGC {
-		send_3(KGC,Cliente,H(OTAC)); // ATUALIZA OTAC DO CLIENTE
-		send_4(KGC,Tecnico,H(OTAC)); // ATUALIZA OTAC DO TECNICO
-		send_5(KGC,ISP,H(OTAC));  // ATUALIZA OTAC DA ISP
+		send_3(KGC,Cliente,H(OTAC-cliente)); // ATUALIZA OTAC DO CLIENTE
+		send_4(KGC,Tecnico,H(OTAC-tecnico)); // ATUALIZA OTAC DO TECNICO
+		send_5(KGC,ISP,H(OTAC-isp));  // ATUALIZA OTAC DA ISP
 	}
 
 	role Tecnico {
-		var iS: Nonce;
-		fresh idAtendimento, iT, nonce, foto: Nonce;
-		send_1(Tecnico, ISP, nonce, foto, idAtendimento, iT, HMAC(idAtendimento, iT)); // 3 GERA QR CODE E ENVIA PARA ISP
-		recv_6(ISP, Tecnico, nonce, foto, idAtendimento, iS, HMAC(idAtendimento, iS)); //recebe as info do tec
-		recv_4(KGC, Tecnico, H(OTAC)); // ATUALIZA OTAC DO TECNICO
-		claim(Tecnico, Secret, OTAC);
-}
+		var foto-cliente, iS: Nonce;
+		fresh idAtendimento, iT, nonce, foto-tecnico: Nonce;
+
+		send_1(Tecnico, ISP, nonce, foto-tecnico, idAtendimento,  iT, HMAC(idAtendimento, iT)); // 3 GERA QR CODE E ENVIA PARA ISP
+		
+		recv_6(ISP, Tecnico, nonce, foto-cliente, idAtendimento, {ISP, iS}sk(Tecnico), HMAC(idAtendimento, {ISP, iS}sk(Tecnico))); //recebe as info do cliente
+		recv_4(KGC, Tecnico, H(OTAC-tecnico)); // ATUALIZA OTAC DO TECNICO
+
+		claim(Tecnico, Secret, OTAC-tecnico);
+		claim(Tecnico, Secret, iS);
+		claim(Tecnico, Secret, iT);
+		claim(Tecnico, Secret, idAtendimento);
+		claim(Tecnico, Secret, foto-tecnico);
+		claim(Tecnico, Secret, foto-cliente);
+		claim(Tecnico, Weakagree);
+		claim(Tecnico, Niagree);
+		claim(Tecnico, Nisynch);
+
+
+	} 
 
 	role ISP {
-		var iT, iC: Nonce;
-		fresh idAtendimento, iS, nonce, foto: Nonce;
-		recv_1(Tecnico, ISP, nonce, foto, idAtendimento, iT, HMAC(idAtendimento, iT)); // recebe solicitacao de autenticao
-		recv_2(Cliente, ISP, nonce, foto, idAtendimento, iC, HMAC(idAtendimento, iC)); // recebe solicitacao de autenticacao
-		send_6(ISP, Tecnico, nonce, foto, idAtendimento, iS, HMAC(idAtendimento, iS)); // MANDA PRO TEC AS INFO DO CLIENTE
-		send_7(ISP, Cliente, nonce, foto, idAtendimento, iS, HMAC(idAtendimento, iS)); // MANDA PRO TEC AS INFO DO CLIENTE
-		recv_5(KGC, ISP, H(OTAC)); // atualiza otac da isp
-		claim(ISP, Secret, OTAC);
+		var iT, iC, foto-tecnico, foto-cliente: Nonce;
+		fresh idAtendimento, iS, nonce: Nonce;
+
+		recv_1(Tecnico, ISP, nonce, foto-tecnico, idAtendimento,  iT, HMAC(idAtendimento, iT)); // recebe solicitacao de autenticao
+		recv_2(Cliente, ISP, nonce, foto-cliente, idAtendimento, iC, HMAC(idAtendimento, iC)); // recebe solicitacao de autenticacao
+
+		send_6(ISP, Tecnico, nonce, foto-cliente, idAtendimento, {ISP, iS}sk(Tecnico), HMAC(idAtendimento, {ISP, iS}sk(Tecnico))); // MANDA PRO TEC AS INFO DO CLIENTE
+		send_7(ISP, Cliente, nonce, foto-tecnico, idAtendimento, {ISP, iS}sk(Cliente), HMAC(idAtendimento, {ISP, iS}sk(Cliente))); // MANDA PRO TEC AS INFO DO CLIENTE
+		
+		recv_5(KGC, ISP, H(OTAC-isp)); // atualiza otac da isp
+
+		claim(ISP, Secret, OTAC-isp);
+		claim(ISP, Secret, iS);
+		claim(ISP, Secret, iT);
+		claim(ISP, Secret, iC);
+		claim(ISP, Secret, idAtendimento);
+		claim(ISP, Secret, foto-tecnico);
+		claim(ISP, Secret, foto-cliente);
+		claim(ISP, Weakagree);
+		claim(ISP, Niagree);
+		claim(ISP, Nisynch);
 	}
 	
 	role Cliente {
-		fresh nonce, foto, idAtendimento, iC: Nonce;
-		var iS: Nonce;
-		send_2(Cliente, ISP, nonce, foto, idAtendimento, iC, HMAC(idAtendimento, iC)); // solicita autenticacao
-		recv_7(ISP, Cliente, nonce, foto, idAtendimento, iS, HMAC(idAtendimento, iS)); // recebe as info do tec
-		recv_3(KGC,Cliente,H(OTAC)); // ATUALIZA OTAC DO CLIENTE
-		claim(Cliente, Secret, OTAC);
+		var foto-tecnico, iS: Nonce;
+		fresh nonce, foto-cliente, idAtendimento, iC: Nonce;
+
+		send_2(Cliente, ISP, nonce, foto-cliente, idAtendimento, iC, HMAC(idAtendimento, iC)); // solicita autenticacao
+
+		recv_7(ISP, Cliente, nonce, foto-tecnico, idAtendimento, {ISP, iS}sk(Cliente), HMAC(idAtendimento, {ISP, iS}sk(Cliente))); // recebe as info do tec
+		recv_3(KGC,Cliente,H(OTAC-cliente)); // ATUALIZA OTAC DO CLIENTE
+
+		claim(Cliente, Secret, OTAC-cliente);
+		claim(Cliente, Secret, iS);
+		claim(Cliente, Secret, iC);
+		claim(Cliente, Secret, idAtendimento);
+		claim(Cliente, Secret, foto-cliente);
+		claim(Cliente, Secret, foto-tecnico);
+		claim(Cliente, Weakagree);
+		claim(Cliente, Niagree);
+		claim(Cliente, Nisynch);
 }
 }
 
