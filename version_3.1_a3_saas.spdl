@@ -1,0 +1,86 @@
+/*
+ Baseado em generalized NSL: 
+ https://research.tue.nl/en/publications/scyther-semantics-and-verification-of-security-protocols
+Secao 3.1
+*/
+usertype String;
+const TEC-ISP : String; 
+const TEC-CLI : String; 
+
+protocol NSL3(Tec, Cli, Isp) {
+
+	role Tec {
+		fresh nonce-tec: Nonce;
+		var nonce-cli, nonce-isp: Nonce;
+		fresh id-atendimento: Nonce;
+		
+		// MENSAGEM A
+		send_11(Tec, Cli, {nonce-tec, Cli, Isp}sk(Tec));
+		recv_13(Isp, Tec, {nonce-tec, nonce-cli, nonce-isp, Tec, Cli}sk(Isp));
+
+		// MENSAGEM B
+		send_21(Tec, Cli, {nonce-cli, nonce-isp, Cli, Isp}sk(Tec));
+
+		// MENSAGEM C - ATENDIMENTO
+		send_31(Tec, Cli, {TEC-CLI, id-atendimento}(nonce-tec, nonce-cli, nonce-isp));
+		send_32(Tec, Isp, {TEC-ISP, id-atendimento}(nonce-tec, nonce-cli, nonce-isp));
+		
+		// VERIFICACAO
+		claim(Tec, Niagree);
+		claim(Tec, Weakagree);
+		claim(Tec, Nisynch);
+		claim(Tec, Secret, sk(Tec));
+		claim(Tec, Secret, sk(Isp));
+		claim(Tec, Secret, sk(Cli));
+		claim(Tec, Secret, sk(nonce-tec));
+		claim(Tec, Secret, sk(nonce-cli));
+		claim(Tec, Secret, sk(nonce-isp));
+	}
+
+	role Cli {
+		var nonce-tec, nonce-isp, id-atendimento: Nonce;
+		fresh nonce-cli: Nonce;
+
+		// MENSAGEM A
+		recv_11(Tec, Cli, {nonce-tec, Cli, Isp}sk(Tec));
+		send_12(Cli, Isp, {nonce-tec, nonce-cli, Tec, Isp}sk(Cli));
+
+		// MENSAGEM B
+		recv_21(Tec, Cli, {nonce-cli, nonce-isp, Cli, Isp}sk(Tec));
+		send_22(Cli, Isp, {nonce-isp, Tec, Isp}sk(Cli));
+
+		// MENSAGEM C - ATENDIMENTO
+		recv_31(Tec, Cli, {TEC-CLI, id-atendimento}(nonce-tec, nonce-cli, nonce-isp));
+	
+		// VERIFICACAO
+		claim(Cli, Secret, sk(Tec));
+		claim(Cli, Secret, sk(Isp));
+		claim(Cli, Secret, sk(Cli));
+		claim(Cli, Secret, sk(nonce-tec));
+		claim(Cli, Secret, sk(nonce-cli));
+		claim(Cli, Secret, sk(nonce-isp));
+}
+
+	role Isp {
+		var nonce-tec, nonce-cli, id-atendimento: Nonce;
+		fresh nonce-isp: Nonce;
+	
+		// MENSAGEM A
+		recv_12(Cli, Isp, {nonce-tec, nonce-cli, Tec, Isp}sk(Cli));
+		send_13(Isp, Tec, {nonce-tec, nonce-cli, nonce-isp, Tec, Cli}sk(Isp));
+
+		//MENSAGEM B
+		recv_22(Cli, Isp, {nonce-isp, Tec, Isp}sk(Cli));
+
+		// MENSAGEM C - ATENDIMENTO
+		recv_32(Tec, Isp, {TEC-ISP, id-atendimento}(nonce-tec, nonce-cli, nonce-isp));
+	
+		// VERIFICACAO
+		claim(Isp, Secret, sk(Tec));
+		claim(Isp, Secret, sk(Isp));
+		claim(Isp, Secret, sk(Cli));
+		claim(Isp, Secret, sk(nonce-tec));
+		claim(Isp, Secret, sk(nonce-cli));
+		claim(Isp, Secret, sk(nonce-isp));
+}	
+}

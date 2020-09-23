@@ -1,0 +1,62 @@
+/*
+ Baseado em generalized NSL: 
+ https://research.tue.nl/en/publications/scyther-semantics-and-verification-of-security-protocols
+*/
+usertype String;
+const TEC-ISP : String; 
+const TEC-CLI : String; 
+
+protocol NSL3(Tec,Cli,Isp){
+	
+	role Tec {		
+		fresh nonce-tec            : Nonce;
+		var   nonce-cli, nonce-isp : Nonce; 
+		
+		fresh id-atendimento	   : Nonce;
+		
+		//Mensagem A
+		send_11(Tec, Cli, {nonce-tec, Tec, Isp}pk(Cli));
+		recv_13(Isp, Tec, {nonce-tec, nonce-cli, nonce-isp, Cli, Isp}pk(Tec));
+		
+		//Mensagem B
+		send_21(Tec, Cli, {nonce-tec, nonce-cli, nonce-isp}pk(Cli));
+		
+		//Mensagem Atendimento
+		send_31(Tec, Cli, {TEC-CLI, id-atendimento}(nonce-tec, nonce-cli, nonce-isp));
+		send_32(Tec, Isp, {TEC-ISP, id-atendimento}(nonce-tec, nonce-cli, nonce-isp));	
+	} 
+	
+	role Cli {
+		fresh nonce-cli            : Nonce;
+		var   nonce-tec, nonce-isp : Nonce;
+		var   id-atendimento	   : Nonce;
+		
+		//Mensagem A
+		recv_11(Tec, Cli, {nonce-tec, Tec, Isp}pk(Cli));
+		send_12(Cli, Isp, {nonce-tec, nonce-cli, Cli, Tec}pk(Isp));
+		
+		//Mensagem B
+		recv_21(Tec, Cli, {nonce-tec, nonce-cli, nonce-isp}pk(Cli));
+		send_22(Cli, Isp, {nonce-cli, nonce-isp}pk(Isp));	
+		
+		//Mensagem Atendimento
+		recv_31(Tec, Cli, {TEC-CLI, id-atendimento}(nonce-tec, nonce-cli, nonce-isp));
+	}
+	
+	role Isp {
+		fresh nonce-isp            : Nonce;
+		var   nonce-tec, nonce-cli : Nonce;
+		var   id-atendimento	   : Nonce;
+		
+		//Mensagem A
+		recv_12(Cli, Isp, {nonce-tec, nonce-cli, Cli, Tec}pk(Isp));
+		send_13(Isp, Tec, {nonce-tec, nonce-cli, nonce-isp, Cli, Isp}pk(Tec));
+		
+		//Mensagem B
+		recv_22(Cli, Isp, {nonce-cli, nonce-isp}pk(Isp));
+		
+		//Mensagem Atendimento
+		recv_32(Tec, Isp, {TEC-ISP, id-atendimento}(nonce-tec, nonce-cli, nonce-isp));
+	}
+	
+}
