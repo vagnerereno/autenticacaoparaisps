@@ -4,6 +4,7 @@ Baseado em Generalized Bilateral Key Exchange (BKE) ou B*, Seção 3.3:
 https://people.cispa.io/cas.cremers/downloads/papers/CrMa2006-authentication_family.pdf
 
 Como mecanismo de autenticação, usamos Auth4app (SBseg 2020)
+
 	Auth4App: Protocols for Identification and Authentication using Mobile Applications
 	Diego Kreutz, Rafael Fernandes, Giulliano Paz, Tadeu Jenuario, Rodrigo Mansilha, Roger Immich, Charles C. Miers
 	SBC 20º Simpósio Brasileiro de Segurança da Informação (SBSeg 2020)
@@ -22,8 +23,8 @@ protocol BKE4ISP(Cli, Tec, Isp) {
 		fresh nonce-cli                            : Nonce;
 		
 		// MENSAGEM A
-		send_11(Cli, Tec, {nonce-cli,                       Cli, Isp}pkAuth4app(Tec));
-		recv_13(Isp, Cli, {nonce-cli, nonce-tec, nonce-isp, Tec, Isp}pkAuth4app(Cli));
+		send_11(Cli, Tec, {nonce-cli,                       Cli, Isp}skAuth4app(Tec));
+		recv_13(Isp, Cli, {nonce-cli, nonce-tec, nonce-isp, Tec, Isp}skAuth4app(Cli));
 		
 		// MENSAGEM B
 		send_21(Cli, Tec, ({nonce-isp}nonce-tec));
@@ -37,8 +38,8 @@ protocol BKE4ISP(Cli, Tec, Isp) {
 		fresh nonce-tec                           : Nonce;
 
 		// MENSAGEM A
-		recv_11(Cli, Tec, {nonce-cli,            Cli, Isp}pkAuth4app(Tec));
-		send_12(Tec, Isp, {nonce-cli, nonce-tec, Tec, Cli}pkAuth4app(Isp));
+		recv_11(Cli, Tec, {nonce-cli,            Cli, Isp}skAuth4app(Tec));
+		send_12(Tec, Isp, {nonce-cli, nonce-tec, Tec, Cli}skAuth4app(Isp));
 
 		// MENSAGEM B
 		recv_21(Cli, Tec, ({nonce-isp}nonce-tec));
@@ -53,8 +54,8 @@ protocol BKE4ISP(Cli, Tec, Isp) {
 		fresh nonce-isp, id-atendimento : Nonce;
 			
 		// MENSAGEM A
-		recv_12(Tec, Isp, {nonce-cli, nonce-tec, Tec, Cli}pkAuth4app(Isp));
-		send_13(Isp, Cli, {nonce-cli, nonce-tec, nonce-isp, Tec, Isp}pkAuth4app(Cli));
+		recv_12(Tec, Isp, {nonce-cli, nonce-tec, Tec, Cli}skAuth4app(Isp));
+		send_13(Isp, Cli, {nonce-cli, nonce-tec, nonce-isp, Tec, Isp}skAuth4app(Cli));
 
 		//MENSAGEM B
 		recv_22(Tec, Isp, ({palavraVazia}nonce-isp));
