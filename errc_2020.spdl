@@ -16,7 +16,7 @@ const  pkAuth4app : Function;
 secret skAuth4app : Function;
 inversekeys (pkAuth4app, skAuth4app);
 
-protocol BKE4ISP(Cli, Tec, Isp) {
+protocol BKE-Auth4-ISP(Cli, Tec, Isp) {
 
 	role Cli {
 		var   nonce-tec, nonce-isp, id-atendimento : Nonce;
