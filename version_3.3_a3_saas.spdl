@@ -1,85 +1,86 @@
-/*
- Baseado em Generalized Bilateral Key Exchange: 
-https://people.cispa.io/cas.cremers/downloads/papers/CrMa2006-authentication_family.pdf
-Secao 3.3
-*/
-usertype String;
-const TEC-ISP : String; 
-const TEC-CLI : String; 
-const palavraVazia: String;
-
-protocol NSL3(Tec, Cli, Isp) {
-
-	role Tec {
-		fresh nonce-tec: Nonce;
-		var nonce-cli, nonce-isp: Nonce;
-		fresh id-atendimento: Nonce;
-		
-		// MENSAGEM A
-		send_11(Tec, Cli, {nonce-tec, Tec, Isp}pk(Cli));
-		recv_13(Isp, Tec, {nonce-tec, nonce-cli, nonce-isp, Cli, Isp}pk(Tec));
-
-		// MENSAGEM B
-		send_21(Tec, Cli, ({nonce-isp}nonce-cli));
-
-		// MENSAGEM C - ATENDIMENTO
-		send_31(Tec, Cli, {TEC-CLI, id-atendimento}(nonce-tec, nonce-cli, nonce-isp));
-		send_32(Tec, Isp, {TEC-ISP, id-atendimento}(nonce-tec, nonce-cli, nonce-isp));
-		
-		// VERIFICACAO
-		claim(Tec, Niagree);
-		claim(Tec, Weakagree);
-		claim(Tec, Nisynch);
-		claim(Tec, Secret, nonce-tec);
-		claim(Tec, Secret, nonce-cli);
-		claim(Tec, Secret, nonce-isp);
-	}
-
-	role Cli {
-		var nonce-tec, nonce-isp, id-atendimento: Nonce;
-		fresh nonce-cli: Nonce;
-
-		// MENSAGEM A
-		recv_11(Tec, Cli, {nonce-tec, Tec, Isp}pk(Cli));
-		send_12(Cli, Isp, {nonce-tec, nonce-cli, Tec, Cli}pk(Isp));
-
-		// MENSAGEM B
-		recv_21(Tec, Cli, ({nonce-isp}nonce-cli));
-		send_22(Cli, Isp, ({palavraVazia}nonce-isp));
-
-		// MENSAGEM C - ATENDIMENTO
-		recv_31(Tec, Cli, {TEC-CLI, id-atendimento}(nonce-tec, nonce-cli, nonce-isp));
-
-		// VERIFICACAO
-		claim(Cli, Niagree);
-		claim(Cli, Weakagree);
-		claim(Cli, Nisynch);
-		claim(Cli, Secret, nonce-tec);
-		claim(Cli, Secret, nonce-cli);
-		claim(Cli, Secret, nonce-isp);
-	
-}
-
-	role Isp {
-		var nonce-tec, nonce-cli, id-atendimento: Nonce;
-		fresh nonce-isp: Nonce;
-	
-		// MENSAGEM A
-		recv_12(Cli, Isp, {nonce-tec, nonce-cli, Tec, Cli}pk(Isp));
-		send_13(Isp, Tec, {nonce-tec, nonce-cli, nonce-isp, Cli, Isp}pk(Tec));
-
-		//MENSAGEM B
-		recv_22(Cli, Isp, ({palavraVazia}nonce-isp));
-
-		// MENSAGEM C - ATENDIMENTO
-		recv_32(Tec, Isp, {TEC-ISP, id-atendimento}(nonce-tec, nonce-cli, nonce-isp));
-
-		// VERIFICACAO
-		claim(Isp, Niagree);
-		claim(Isp, Weakagree);
-		claim(Isp, Nisynch);
-		claim(Isp, Secret, nonce-tec);
-		claim(Isp, Secret, nonce-cli);
-		claim(Isp, Secret, nonce-isp);
-	}	
+/*
+Algoritmo para Autenticação entre Cliente, Técnico e ISP
+Baseado em Generalized Bilateral Key Exchange: 
+https://people.cispa.io/cas.cremers/downloads/papers/CrMa2006-authentication_family.pdf
+Seção 3.3
+*/
+usertype String;
+const TEC-ISP : String; 
+const TEC-CLI : String; 
+const palavraVazia: String;
+
+protocol NSL3(Tec, Cli, Isp) {
+
+	role Tec {
+		fresh nonce-tec: Nonce;
+		var nonce-cli, nonce-isp: Nonce;
+		fresh id-atendimento: Nonce;
+		
+		// MENSAGEM A
+		send_11(Tec, Cli, {nonce-tec, Tec, Isp}pk(Cli));
+		recv_13(Isp, Tec, {nonce-tec, nonce-cli, nonce-isp, Cli, Isp}pk(Tec));
+
+		// MENSAGEM B
+		send_21(Tec, Cli, ({nonce-isp}nonce-cli));
+
+		// MENSAGEM C - ATENDIMENTO
+		send_31(Tec, Cli, {TEC-CLI, id-atendimento}(nonce-tec, nonce-cli, nonce-isp));
+		send_32(Tec, Isp, {TEC-ISP, id-atendimento}(nonce-tec, nonce-cli, nonce-isp));
+		
+		// VERIFICACAO
+		claim(Tec, Niagree);
+		claim(Tec, Weakagree);
+		claim(Tec, Nisynch);
+		claim(Tec, Secret, nonce-tec);
+		claim(Tec, Secret, nonce-cli);
+		claim(Tec, Secret, nonce-isp);
+	}
+
+	role Cli {
+		var nonce-tec, nonce-isp, id-atendimento: Nonce;
+		fresh nonce-cli: Nonce;
+
+		// MENSAGEM A
+		recv_11(Tec, Cli, {nonce-tec, Tec, Isp}pk(Cli));
+		send_12(Cli, Isp, {nonce-tec, nonce-cli, Tec, Cli}pk(Isp));
+
+		// MENSAGEM B
+		recv_21(Tec, Cli, ({nonce-isp}nonce-cli));
+		send_22(Cli, Isp, ({palavraVazia}nonce-isp));
+
+		// MENSAGEM C - ATENDIMENTO
+		recv_31(Tec, Cli, {TEC-CLI, id-atendimento}(nonce-tec, nonce-cli, nonce-isp));
+
+		// VERIFICACAO
+		claim(Cli, Niagree);
+		claim(Cli, Weakagree);
+		claim(Cli, Nisynch);
+		claim(Cli, Secret, nonce-tec);
+		claim(Cli, Secret, nonce-cli);
+		claim(Cli, Secret, nonce-isp);
+	
+}
+
+	role Isp {
+		var nonce-tec, nonce-cli, id-atendimento: Nonce;
+		fresh nonce-isp: Nonce;
+	
+		// MENSAGEM A
+		recv_12(Cli, Isp, {nonce-tec, nonce-cli, Tec, Cli}pk(Isp));
+		send_13(Isp, Tec, {nonce-tec, nonce-cli, nonce-isp, Cli, Isp}pk(Tec));
+
+		//MENSAGEM B
+		recv_22(Cli, Isp, ({palavraVazia}nonce-isp));
+
+		// MENSAGEM C - ATENDIMENTO
+		recv_32(Tec, Isp, {TEC-ISP, id-atendimento}(nonce-tec, nonce-cli, nonce-isp));
+
+		// VERIFICACAO
+		claim(Isp, Niagree);
+		claim(Isp, Weakagree);
+		claim(Isp, Nisynch);
+		claim(Isp, Secret, nonce-tec);
+		claim(Isp, Secret, nonce-cli);
+		claim(Isp, Secret, nonce-isp);
+	}	
 }
