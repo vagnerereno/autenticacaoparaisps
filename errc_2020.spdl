@@ -12,10 +12,6 @@ Como mecanismo de autenticação, usamos Auth4app (SBseg 2020)
 usertype String;
 const ISP-CLI, ISP-TEC, palavraVazia: String; 
 
-const  pkAuth4app : Function;
-secret skAuth4app : Function;
-inversekeys (pkAuth4app, skAuth4app);
-
 protocol BKE-Auth4-ISP(Cli, Tec, Isp) {
 
 	role Cli {
@@ -24,8 +20,8 @@ protocol BKE-Auth4-ISP(Cli, Tec, Isp) {
 		//var id-atendimento 			: Nonce;
 		
 		// MENSAGEM A
-		send_1(Cli, Tec, {nonce-cli,                       Cli, Isp}skAuth4app(Tec));
-		recv_3(Isp, Cli, {nonce-cli, nonce-tec, nonce-isp, Tec, Isp}skAuth4app(Cli));
+		send_1(Cli, Tec, {nonce-cli,                       Cli, Isp}pk(Tec));
+		recv_3(Isp, Cli, {nonce-cli, nonce-tec, nonce-isp, Tec, Isp}pk(Cli));
 		
 		// MENSAGEM B
 		send_4(Cli, Tec, ({nonce-isp}nonce-tec));
@@ -40,8 +36,8 @@ protocol BKE-Auth4-ISP(Cli, Tec, Isp) {
 		//var id-atendimento		: Nonce;
 
 		// MENSAGEM A
-		recv_1(Cli, Tec, {nonce-cli,            Cli, Isp}skAuth4app(Tec));
-		send_2(Tec, Isp, {nonce-cli, nonce-tec, Tec, Cli}skAuth4app(Isp));
+		recv_1(Cli, Tec, {nonce-cli,            Cli, Isp}pk(Tec));
+		send_2(Tec, Isp, {nonce-cli, nonce-tec, Tec, Cli}pk(Isp));
 
 		// MENSAGEM B
 		recv_4(Cli, Tec, ({nonce-isp}nonce-tec));
@@ -57,8 +53,8 @@ protocol BKE-Auth4-ISP(Cli, Tec, Isp) {
 		//fresh id-atendimento 		: Nonce;
 			
 		// MENSAGEM A
-		recv_2(Tec, Isp, {nonce-cli, nonce-tec, Tec, Cli}skAuth4app(Isp));
-		send_3(Isp, Cli, {nonce-cli, nonce-tec, nonce-isp, Tec, Isp}skAuth4app(Cli));
+		recv_2(Tec, Isp, {nonce-cli, nonce-tec, Tec, Cli}pk(Isp));
+		send_3(Isp, Cli, {nonce-cli, nonce-tec, nonce-isp, Tec, Isp}pk(Cli));
 
 		//MENSAGEM B
 		recv_5(Tec, Isp, ({palavraVazia}nonce-isp));
