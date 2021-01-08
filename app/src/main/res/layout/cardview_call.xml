@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardViewCall"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:layout_marginLeft="6dp"
+    android:layout_marginTop="3dp"
+    android:layout_marginRight="6dp"
+    android:layout_marginBottom="3dp"
+    android:background="#fff">
+
+
+    <RelativeLayout
+        android:id="@+id/boxmyBudgetsRequestedContent"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+
+        >
+
+        <ImageView
+            android:id="@+id/photoView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/card_default_profile" />
+
+        <TextView
+            android:id="@+id/txtViewNameTechnican"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="6dp"
+            android:layout_toRightOf="@+id/photoView"
+            android:text="Vagner Ereno Quincozes"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/txtViewCertificationTechnican"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtViewNameTechnican"
+            android:layout_marginTop="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_toRightOf="@+id/photoView"
+            android:drawableLeft="@drawable/ic_call_check"
+            android:text="Certificado por Interneith" />
+
+        <TextView
+            android:id="@+id/textViewDataTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            android:layout_toRightOf="@+id/photoView"
+            android:text="01/01/1999 às 00:00"
+            android:textColor="@color/colorAccent" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
+

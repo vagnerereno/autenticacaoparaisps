@@ -24,6 +24,7 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
+import com.tcc2.bke_auth4isp.calls.view.CallsFragment;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -94,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                     selectedFragment = new HomeFragment();
                     break;
                 case R.id.navigation_chamados:
-                    selectedFragment = new ChamadosFragment();
+                    selectedFragment = new CallsFragment();
                     break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
