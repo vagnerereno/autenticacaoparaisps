@@ -16,5 +16,28 @@
     <color name="royalblue">#436EEE</color>
     <color name="colorAccent">#09B18D</color>
     <color name="colorInform">#E9F4FF</color>
-
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorPrimaryOpacy">#3AB399</color>
+    <color name="colorPrimary">#00a481</color>
+    <color name="colorPrimaryDark">#008D6F</color>
+    <color name="colorPrimaryBlue">#283593</color>
+    <color name="colorPrimaryDarkBlue">#140b46</color>
+    <color name="colorSecondary">#00BDD7EE</color>
+    <color name="colorUnSelected">#9CEDE3</color>
+    <color name="colorThree">#4eb87a</color>
+    <color name="colorAccentVerySutil">#4A09B18D</color>
+    <color name="colorAccentDark">#0A7E65</color>
+    <color name="prata2">#EEEEEEFB</color>
+    <color name="colorAccentSecondary">#ADADAD</color>
+    <color name="colorDisable">#595959</color>
+    <color name="colorAlert">#77D3D3D3</color>
+    <color name="colorAlertYellow">#fffbac</color>
+    <color name="colorAlertOrange">#FB8C00</color>
+    <color name="chatIncome">#F8B197</color>'
+    <color name="chatOutcome">#A2D5E0</color>
+    <color name="accept">#43A047</color>
+    <color name="reject">#B71C1C</color>
+    <color name="successBackground">#3f7f4b</color>
+    <color name="errorBackground">#DF2222</color>
+    <color name="pendingText">#FF9800</color>
 </resources>
