@@ -7,8 +7,8 @@
         android:title="Início" />
 
     <item
-        android:id="@+id/navigation_chamados"
-        android:icon="@drawable/ic_baseline_star_24"
+        android:id="@+id/navigation_attendance"
+        android:icon="@drawable/ic_attendance"
         android:title="Chamados" />
 
 </menu>

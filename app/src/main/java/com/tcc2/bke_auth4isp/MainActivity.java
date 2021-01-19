@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_home:
                     selectedFragment = new HomeFragment();
                     break;
-                case R.id.navigation_chamados:
+                case R.id.navigation_attendance:
                     selectedFragment = new CallsFragment();
                     break;
             }
