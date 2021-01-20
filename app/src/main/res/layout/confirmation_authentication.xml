@@ -48,7 +48,7 @@
                     android:src="@drawable/white_circle" />
 
                 <ImageView
-                    android:id="@+id/foto_professional_feedback"
+                    android:id="@+id/photo_technican_feedback"
                     android:layout_width="130dp"
                     android:layout_height="130dp"
                     android:layout_centerHorizontal="true"
@@ -60,7 +60,7 @@
                     android:id="@+id/rate_technican"
                     android:layout_width="wrap_content"
                     android:layout_height="44dp"
-                    android:layout_below="@+id/foto_professional_feedback"
+                    android:layout_below="@+id/photo_technican_feedback"
                     android:layout_centerHorizontal="true"
                     android:numStars="5"
                     android:progressBackgroundTint="@color/prata_dark"

@@ -31,12 +31,12 @@
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/professional_name"
+            android:id="@+id/technican_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/professional_city"
             android:layout_centerHorizontal="true"
-            android:text="O que deseja hoje?"
+            android:text="O que você deseja hoje?"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20dp"
@@ -46,7 +46,7 @@
             android:id="@+id/buttonGenerateQRCode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/professional_name"
+            android:layout_below="@+id/technican_name"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:textSize="18dp"
@@ -66,7 +66,7 @@
             android:layout_marginTop="40dp"
             android:textSize="18dp"
             android:backgroundTint="@color/black_overlay"
-            android:text="Autenticar Usuário"
+            android:text="Ler QR Code"
             android:padding="35dp"
             android:textColor="@color/white" />
 

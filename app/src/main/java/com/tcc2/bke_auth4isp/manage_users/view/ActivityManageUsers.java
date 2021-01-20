@@ -1,6 +1,7 @@
 package com.tcc2.bke_auth4isp.manage_users.view;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -38,4 +39,8 @@ public class ActivityManageUsers extends AppCompatActivity implements ManageUser
         );
     }
 
+    @Override
+    public Context getContext() {
+        return null;
+    }
 }

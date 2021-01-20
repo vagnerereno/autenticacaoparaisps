@@ -48,7 +48,7 @@
                     android:src="@drawable/white_circle" />
 
                 <ImageView
-                    android:id="@+id/foto_professional_feedback"
+                    android:id="@+id/photo_technican_feedback"
                     android:layout_width="130dp"
                     android:layout_height="130dp"
                     android:layout_centerHorizontal="true"
@@ -57,20 +57,20 @@
                     android:src="@drawable/profile_default" />
 
                 <TextView
-                    android:id="@+id/professional_city"
+                    android:id="@+id/isp_technican"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/professional_name"
+                    android:layout_below="@id/technican_name"
                     android:layout_centerHorizontal="true"
                     android:text="@string/carregando"
                     android:textAlignment="center"
                     android:textSize="15dp" />
 
                 <TextView
-                    android:id="@+id/professional_name"
+                    android:id="@+id/technican_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/foto_professional_feedback"
+                    android:layout_below="@id/photo_technican_feedback"
                     android:layout_centerHorizontal="true"
 
                     android:text="@string/carregando"
@@ -128,7 +128,7 @@
                     android:text="Avalie a qualidade de atendimento" />
 
                 <RatingBar
-                    android:id="@+id/rate_professional"
+                    android:id="@+id/rate_technican"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/textQualidadeProfissional"
@@ -164,7 +164,7 @@
                 android:padding="12dp" />
 
             <Button
-                android:id="@+id/avaliarProfissional"
+                android:id="@+id/buttonAvaiableTechnican"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"

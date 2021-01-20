@@ -26,7 +26,7 @@
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/professional_name"
+            android:id="@+id/technican_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/professional_city"
@@ -44,7 +44,7 @@
         android:layout_marginTop="235dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nomeUsuario"
+            android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
@@ -55,14 +55,14 @@
             android:padding="18dp" />
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/senhaUsuario"
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:background="@drawable/button_border_white"
             android:backgroundTint="@color/white"
-            android:layout_below="@id/nomeUsuario"
+            android:layout_below="@id/username"
             android:layout_marginTop="12dp"
             android:hint="Insira aqui a sua senha"
             android:padding="18dp" />
@@ -71,7 +71,7 @@
             android:id="@+id/buttonLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/senhaUsuario"
+            android:layout_below="@id/password"
             android:layout_centerVertical="true"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="30dp"

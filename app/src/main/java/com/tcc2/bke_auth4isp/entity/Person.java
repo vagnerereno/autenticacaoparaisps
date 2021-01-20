@@ -6,12 +6,23 @@ public class Person {
     private long cpf;
     private long rg;
     private long phone;
+    private String isp;
+    String url_photo;
 
-    public Person(String name, long cpf, long rg, long phone) {
+    public Person(String name, long cpf, long rg, long phone, String isp, String url_photo) {
         this.name = name;
         this.cpf = cpf;
         this.rg = rg;
         this.phone = phone;
+        this.isp = isp;
+        this.url_photo = url_photo;
+    }
+
+    public String getUrl_photo(){
+        return url_photo;
+    }
+    public void setUrl_photo(String url_photo){
+        this.url_photo = url_photo;
     }
 
     public String getName() {
@@ -20,6 +31,14 @@ public class Person {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setIsp(String isp) {
+        this.isp = isp;
+    }
+
+    public String getIsp(){
+        return isp;
     }
 
     public long getCpf() {
