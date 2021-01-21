@@ -46,6 +46,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
 
     @Override
     public Context getContext() {
-        return null;
+        return getApplicationContext();
     }
 }

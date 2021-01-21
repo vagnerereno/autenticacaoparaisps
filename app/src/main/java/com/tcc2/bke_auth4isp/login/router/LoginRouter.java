@@ -25,5 +25,4 @@ public class LoginRouter implements LoginContracts.Router {
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         mContexto.startActivity(i);
     }
-
 }
