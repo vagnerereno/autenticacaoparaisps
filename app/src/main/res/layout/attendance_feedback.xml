@@ -48,7 +48,7 @@
                     android:src="@drawable/white_circle" />
 
                 <ImageView
-                    android:id="@+id/photo_technican_feedback"
+                    android:id="@+id/photo_feedback"
                     android:layout_width="130dp"
                     android:layout_height="130dp"
                     android:layout_centerHorizontal="true"
@@ -70,7 +70,7 @@
                     android:id="@+id/technican_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/photo_technican_feedback"
+                    android:layout_below="@id/photo_feedback"
                     android:layout_centerHorizontal="true"
 
                     android:text="@string/carregando"
@@ -170,7 +170,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_centerVertical="true"
                 android:layout_margin="20dp"
-                android:background="@color/colorAccent"
+                android:background="@color/colorPrimaryBlue"
                 android:text="AVALIAR PROFISSIONAL"
                 android:textColor="@color/colorInform" />
         </LinearLayout>

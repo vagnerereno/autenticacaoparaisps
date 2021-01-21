@@ -57,7 +57,7 @@
             android:textColor="@color/white" />
 
         <Button
-            android:id="@+id/buttonAuthenticationClient"
+            android:id="@+id/buttonAuthenticationTechnican"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/buttonGenerateQRCode"

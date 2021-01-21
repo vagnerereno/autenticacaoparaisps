@@ -43,17 +43,17 @@ public class CallsFragment extends Fragment implements CallsContracts.View {
     }
 
     private void adicionarCallTeste2() {
-        Client client = new Client("Vagner", 545465, 99708521, 4465465);
+        Client client = new Client("Vagner", 545465, 99708521, 4465465, "", "");
         Technician technician = new Technician("Vagner", 545465, 99708521, 4465465, "", "");
-        Manager manager = new Manager("Vagner", 545465, 99708521, 4465465);
+        Manager manager = new Manager("Vagner", 545465, 99708521, 4465465,"","");
         ISP isp = new ISP("code 02", "Interneith");
         myCalls.add(new Call(client, technician, manager, isp, Calendar.getInstance().getTime()));
     }
 
     private void adicionarCallTeste() {
-        Client client = new Client("Vagner", 545465, 99708521, 4465465);
+        Client client = new Client("Vagner", 545465, 99708521, 4465465,"","");
         Technician technician = new Technician("Vagner", 545465, 99708521, 4465465, "", "");
-        Manager manager = new Manager("Vagner", 545465, 99708521, 4465465);
+        Manager manager = new Manager("Vagner", 545465, 99708521, 4465465,"","");
         ISP isp = new ISP("code 02", "Interneith");
         adapter.addItem(new Call(client, technician, manager, isp, Calendar.getInstance().getTime()));
     }

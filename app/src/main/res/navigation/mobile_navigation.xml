@@ -7,19 +7,13 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="bke_auth4isp.HomeFragment"
+        android:name="com.tcc2.bke_auth4isp.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.yosoy.bke_auth4isp.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
-
-    <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.yosoy.bke_auth4isp.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:name="com.tcc2.bke_auth4isp.calls.view.CallsFragment"
+        android:label="Chamados"
+        tools:layout="@layout/calls_fragment" />
 </navigation>

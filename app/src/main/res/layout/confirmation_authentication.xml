@@ -48,7 +48,7 @@
                     android:src="@drawable/white_circle" />
 
                 <ImageView
-                    android:id="@+id/photo_technican_feedback"
+                    android:id="@+id/photo_feedback"
                     android:layout_width="130dp"
                     android:layout_height="130dp"
                     android:layout_centerHorizontal="true"
@@ -60,7 +60,7 @@
                     android:id="@+id/rate_technican"
                     android:layout_width="wrap_content"
                     android:layout_height="44dp"
-                    android:layout_below="@+id/photo_technican_feedback"
+                    android:layout_below="@+id/photo_feedback"
                     android:layout_centerHorizontal="true"
                     android:numStars="5"
                     android:progressBackgroundTint="@color/prata_dark"
@@ -70,7 +70,7 @@
                     android:secondaryProgressTint="@color/prata" />
 
                 <TextView
-                    android:id="@+id/technicanName"
+                    android:id="@+id/nameConfirmation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/rate_technican"
@@ -82,10 +82,10 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtViewCertificationConfirmation"
+                    android:id="@+id/txtViewIsp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/technicanName"
+                    android:layout_below="@id/nameConfirmation"
                     android:layout_centerHorizontal="true"
                     android:text="@string/carregando"
                     android:textAlignment="center"
@@ -117,13 +117,13 @@
                 android:background="?android:attr/listDivider" />
 
             <Button
-                android:id="@+id/buttonConfirm"
+            android:id="@+id/buttonConfirm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerVertical="true"
                 android:layout_margin="20dp"
-                android:background="@color/colorAccent"
+                android:background="@color/colorPrimaryBlue"
                 android:text="Confirmar Identidade"
                 android:textColor="@color/colorInform" />
         </LinearLayout>

@@ -1,11 +1,11 @@
-package com.tcc2.bke_auth4isp.login;
+package com.tcc2.bke_auth4isp.homepage_client;
 
 import android.content.Context;
 
-public interface LoginContracts {
+public interface HomeClientContracts {
 
     interface Router{
-        void gotoHomeScreenClient();
+
     }
 
     interface Presenter {
@@ -17,8 +17,6 @@ public interface LoginContracts {
     }
 
     interface  View {
-
         Context getContext();
     }
-
 }

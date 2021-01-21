@@ -3,8 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/login"
-    android:background="@drawable/background_login"
-    >
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".login.view.LoginActivity"
+    android:background="@drawable/background_login">
 
 
 
