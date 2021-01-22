@@ -6,6 +6,8 @@ public interface LoginContracts {
 
     interface Router{
         void gotoHomeScreenClient();
+        void gotoHomeScreenTechican();
+        void gotoHomeScreenManager();
     }
 
     interface Presenter {

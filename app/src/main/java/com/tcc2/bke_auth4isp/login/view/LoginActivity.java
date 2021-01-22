@@ -21,6 +21,9 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
     private Activity activity;
     EditText username;
     EditText password;
+    Button testClient;
+    Button testManager;
+    Button testTechican;
     Button buttonConfirmLogin;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,9 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
         activity = this;
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
+        testClient = findViewById(R.id.testCliente);
+        testManager = findViewById(R.id.testManager);
+        testTechican = findViewById(R.id.testTechinican);
         buttonConfirmLogin = findViewById(R.id.buttonLogin);
         buttonConfirmLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,7 +45,31 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
                 //TODO Conferir credenciais e redirecionar para a próxima página.
             }
         });
+
+        testClient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                router.gotoHomeScreenClient();
+            }
+        });
+
+        testManager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                router.gotoHomeScreenManager();
+            }
+        });
+
+        testTechican.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                router.gotoHomeScreenTechican();
+            }
+        });
+
     }
+
+
     //TODO FAZER método para checar credenciais do usuário.
     public void checkUser(String username, String password) {
     }

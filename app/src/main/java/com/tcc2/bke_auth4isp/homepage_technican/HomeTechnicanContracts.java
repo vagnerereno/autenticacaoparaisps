@@ -6,6 +6,9 @@ public interface HomeTechnicanContracts {
 
     interface Router{
 
+        void gotoGenerateQRCode();
+
+        void gotoReadQRCode();
     }
 
     interface Presenter {

@@ -46,21 +46,21 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
 
         btn_leitura.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               IntentIntegrator integrator = new IntentIntegrator(activity);
-               integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
-               integrator.setPrompt("Câmera Scan");
-               integrator.setCameraId(0); // CÂMERA TRASEIRA. SE FOR 1 É CÂMERA DA FRENTE
-               integrator.initiateScan();
-           }
-         });
-         btn_gerar.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                  gerarQRCode();
-              }
-         }
+            @Override
+            public void onClick(View v) {
+                IntentIntegrator integrator = new IntentIntegrator(activity);
+                integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
+                integrator.setPrompt("Câmera Scan");
+                integrator.setCameraId(0); // CÂMERA TRASEIRA. SE FOR 1 É CÂMERA DA FRENTE
+                integrator.initiateScan();
+            }
+        });
+        btn_gerar.setOnClickListener(new View.OnClickListener() {
+                                         @Override
+                                         public void onClick(View v) {
+                                             gerarQRCode();
+                                         }
+                                     }
         );
     }
 
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
             Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
             imgQRCode.setImageBitmap(bitmap);
-        } catch (WriterException e){
+        } catch (WriterException e) {
             e.printStackTrace();
         }
     }
@@ -108,16 +108,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
-          if (result.getContents() != null) {
-              alert(result.getContents());
-          } else {
-              alert("Scan Cancelado");
-          }
+            if (result.getContents() != null) {
+                alert(result.getContents());
+            } else {
+                alert("Scan Cancelado");
+            }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
-    private void alert(String msg){                                       
+    private void alert(String msg) {
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
-}   }                                                                     
+    }
+}

@@ -5,7 +5,8 @@ import android.content.Context;
 public interface HomeClientContracts {
 
     interface Router{
-
+        void gotoGenerateQRCode();
+        void gotoReadQRCode();
     }
 
     interface Presenter {

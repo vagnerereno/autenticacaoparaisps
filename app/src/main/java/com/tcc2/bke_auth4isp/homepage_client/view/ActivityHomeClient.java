@@ -33,20 +33,25 @@ public class ActivityHomeClient extends AppCompatActivity implements HomeClientC
         buttonGenerateQRCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO abrir tela ActivityManageUsers
+                router.gotoGenerateQRCode();
             }
         });
         buttonAuthenticationTechnican.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View v) {
-                  // @TODO abrir leitor de QR Code.
+                  router.gotoReadQRCode();
               }
           }
         );
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    @Override
     public Context getContext() {
-        return null;
+        return getApplicationContext();
     }
 }

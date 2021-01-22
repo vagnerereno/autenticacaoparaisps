@@ -33,13 +33,13 @@ public class ActivityHomeTechnican extends AppCompatActivity implements HomeTech
         buttonGenerateQRCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO gerar um QR Code com informações do técnico
+                router.gotoGenerateQRCode();
             }
         });
         buttonAuthenticationClient.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View v) {
-                  // @TODO abrir leitor de QR Code.
+                  router.gotoReadQRCode();
               }
           }
         );
@@ -47,6 +47,6 @@ public class ActivityHomeTechnican extends AppCompatActivity implements HomeTech
 
     @Override
     public Context getContext() {
-        return null;
+        return getApplicationContext();
     }
 }

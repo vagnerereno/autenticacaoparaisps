@@ -5,8 +5,12 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.tcc2.bke_auth4isp.R;
 import com.tcc2.bke_auth4isp.manage_users.ManageUsersContracts;
 import com.tcc2.bke_auth4isp.manage_users.presenter.ManageUsersPresenter;
@@ -29,6 +33,10 @@ public class ActivityNewUser extends AppCompatActivity implements ManageUsersCon
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_user);
+        Toolbar toolbar = findViewById(R.id.toolbarMenu);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         router = new ManageUsersRouter(getContext());
         presenter = new ManageUsersPresenter(this);
         activity = this;
@@ -50,6 +58,39 @@ public class ActivityNewUser extends AppCompatActivity implements ManageUsersCon
                 // @TODO salvar os dados de um novo usuário.
             }
         });
+    }
+
+    public void onCheckboxClicked(View view) {
+        // Is the view now checked?
+        boolean checked = ((CheckBox) view).isChecked();
+
+        // Check which checkbox was clicked
+        switch(view.getId()) {
+            case R.id.checkboxClient:
+                if (checked){
+                    // @TODO Cadastrar novo usuário do tipo cliente
+                }
+                break;
+            case R.id.checkboxTechnican:
+                if (checked){
+                    // @TODO Cadastrar novo usuário do tipo técnico
+                } else{
+
+                }
+                break;
+                // @TODO Deve marcar uma opção
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     @Override

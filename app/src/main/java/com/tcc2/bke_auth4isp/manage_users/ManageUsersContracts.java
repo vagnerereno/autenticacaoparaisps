@@ -6,6 +6,9 @@ public interface ManageUsersContracts {
 
     interface Router{
 
+        void gotoNewUser();
+        void gotoListUsers();
+
     }
 
     interface Presenter {

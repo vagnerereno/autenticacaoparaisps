@@ -17,34 +17,35 @@
             android:layout_height="55dp"
             android:background="@color/colorPrimaryDarkBlue"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title="Gerenciar Usuários > Novo Usuário"
+            app:title="Gerenciar > Novo Usuário"
             app:titleTextColor="@color/colorWhite"></androidx.appcompat.widget.Toolbar>
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginTop="80dp">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="67dp">
 
         <TextView
             android:id="@+id/textUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
+            android:text="Selecione o perfil de cadastro"
             android:textColor="@color/white"
-            android:textSize="16dp"
-            android:text="Selecione o perfil de cadastro"/>
-
+            android:textSize="19dp" />
 
 
         <CheckBox
             android:id="@+id/checkboxClient"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
             android:layout_below="@id/textUser"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="6dp"
             android:onClick="onCheckboxClicked"
             android:text="Cliente"
+            android:backgroundTint="@color/white"
             android:textColor="@color/white"
             android:textSize="16dp" />
 
@@ -53,17 +54,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/textUser"
-            android:layout_marginTop="12dp"
             android:layout_marginLeft="125dp"
+            android:layout_marginTop="10dp"
+            android:text="ou"
             android:textColor="@color/white"
-            android:textSize="16dp"
-            android:text="ou"/>
+            android:textSize="16dp" />
+
         <CheckBox
             android:id="@+id/checkboxTechnican"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="150dp"
             android:layout_below="@id/textUser"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="6dp"
+            android:backgroundTint="@color/white"
             android:onClick="onCheckboxClicked"
             android:text="Técnico"
             android:textColor="@color/white"

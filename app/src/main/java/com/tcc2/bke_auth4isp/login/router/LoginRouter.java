@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.tcc2.bke_auth4isp.homepage_client.view.ActivityHomeClient;
+import com.tcc2.bke_auth4isp.homepage_manager.view.ActivityHomeManager;
+import com.tcc2.bke_auth4isp.homepage_technican.view.ActivityHomeTechnican;
 import com.tcc2.bke_auth4isp.login.LoginContracts;
 
 public class LoginRouter implements LoginContracts.Router {
@@ -25,4 +27,17 @@ public class LoginRouter implements LoginContracts.Router {
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         mContexto.startActivity(i);
     }
+
+    public void gotoHomeScreenTechican(){
+        Intent i = new Intent(getContext(), ActivityHomeTechnican.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        getContext().startActivity(i);
+    }
+
+    public void gotoHomeScreenManager(){
+        Intent i = new Intent(getContext(), ActivityHomeManager.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        getContext().startActivity(i);
+    }
+
 }

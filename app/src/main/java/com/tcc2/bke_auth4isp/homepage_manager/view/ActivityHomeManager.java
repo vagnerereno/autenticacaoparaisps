@@ -27,19 +27,19 @@ public class ActivityHomeManager extends AppCompatActivity implements HomeManage
         presenter = new HomeManagerPresenter(this);
         router = new HomeManageRouter(getContext());
         activity = this;
-        buttonManageUsers = findViewById(R.id.buttonNewUser);
-        buttonAuthentication = findViewById(R.id.buttonViewUser);
+        buttonManageUsers = findViewById(R.id.buttonManageUsers);
+        buttonAuthentication = findViewById(R.id.buttonAuthentication);
 
         buttonManageUsers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO abrir tela ActivityManageUsers
+                router.gotoManageUsers();
             }
         });
         buttonAuthentication.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View v) {
-                  // @TODO abrir leitor de QR Code.
+                  router.gotoReadQRCode();
               }
           }
         );
@@ -47,6 +47,6 @@ public class ActivityHomeManager extends AppCompatActivity implements HomeManage
 
     @Override
     public Context getContext() {
-        return null;
+        return getApplicationContext();
     }
 }

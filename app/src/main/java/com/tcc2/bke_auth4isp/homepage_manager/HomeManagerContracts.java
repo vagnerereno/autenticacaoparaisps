@@ -6,6 +6,9 @@ public interface HomeManagerContracts {
 
     interface Router{
 
+        void gotoReadQRCode();
+        void gotoManageUsers();
+
     }
 
     interface Presenter {
