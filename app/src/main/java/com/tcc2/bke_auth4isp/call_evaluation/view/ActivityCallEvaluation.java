@@ -36,8 +36,8 @@ public class ActivityCallEvaluation extends AppCompatActivity implements CallEva
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.attendance_feedback);
-        presenter = new CallEvaluationPresenter(this);
-        router = new CallEvaluationRouter(getContext());
+        presenter = new CallEvaluationPresenter(this, getContext());
+        router = new CallEvaluationRouter(this, getContext());
 
         imageView = findViewById(R.id.photo_feedback);
         technican_name = findViewById(R.id.technican_name);

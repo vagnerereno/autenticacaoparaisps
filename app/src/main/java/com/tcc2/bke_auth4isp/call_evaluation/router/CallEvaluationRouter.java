@@ -6,9 +6,11 @@ import com.tcc2.bke_auth4isp.call_evaluation.CallEvaluationContracts;
 
 public class CallEvaluationRouter implements CallEvaluationContracts.Router {
 
+    CallEvaluationContracts.View view;
     Context mContexto;
 
-    public CallEvaluationRouter(Context mContexto) {
+    public CallEvaluationRouter(CallEvaluationContracts.View view, Context mContexto) {
+        this.view = view;
         this.mContexto = mContexto;
     }
 

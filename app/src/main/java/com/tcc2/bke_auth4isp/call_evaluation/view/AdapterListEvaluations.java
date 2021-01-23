@@ -22,13 +22,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class AdapterListEvaluations extends RecyclerView.Adapter<AdapterListEvaluations.MyViewHolder>{
+public class AdapterListEvaluations extends RecyclerView.Adapter<AdapterListEvaluations.MyViewHolder> {
 
     private Context mContext;
     private List<Technician> technicianList;
     private CallEvaluationContracts.Router router;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder {
 
         public TextView nameUser;
         public Button buttonEvaluation;
@@ -36,8 +36,6 @@ public class AdapterListEvaluations extends RecyclerView.Adapter<AdapterListEval
         public Date dateAttendance;
         public ImageView photoView;
         public CardView card;
-
-
 
         public MyViewHolder(View view) {
             super(view);
@@ -79,8 +77,8 @@ public class AdapterListEvaluations extends RecyclerView.Adapter<AdapterListEval
         return technicianList.size();
     }
 
-    public Context getmContext() {
-        return mContext;
+    private Context getContext() {
+        return this.mContext;
     }
 
     public void addItem(Technician s) {
