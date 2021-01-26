@@ -1,6 +1,4 @@
-plugins {
-    id 'com.android.application'
-}
+apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 29
@@ -27,7 +25,19 @@ android {
     }
 }
 
+apply plugin: 'com.google.gms.google-services'
+
 dependencies {
+
+    //FIREBASE
+    implementation platform('com.google.firebase:firebase-bom:26.3.0')
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-database'
+    implementation 'com.google.firebase:firebase-storage'
+
+    apply plugin: 'com.google.gms.google-services'
+
+    //FIREBASE
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'

@@ -69,7 +69,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
 
     }
 
-
     //TODO FAZER método para checar credenciais do usuário.
     public void checkUser(String username, String password) {
     }
