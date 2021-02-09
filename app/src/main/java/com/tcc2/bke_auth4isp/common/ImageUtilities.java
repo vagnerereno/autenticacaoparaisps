@@ -22,6 +22,8 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 import com.tcc2.bke_auth4isp.analytic_logs.YLog;
 
+import static com.tcc2.bke_auth4isp.common.Blur.fastblur;
+
 
 /**
  * Created by Vagner on 20/01/2021.
@@ -74,11 +76,7 @@ public class ImageUtilities {
         drawable.draw(canvas);
         return bitmap;
     }
-    //@TODO ESSE BITMAP fastblur CRIEI PQ TAVA DANDO ERRO. VER ISSO. TAVA PEDINDO P IMPORTAR BLURMASKFILTER.BLUR E ERRO NO MÉTODO fastblur
-    private static Bitmap fastblur(Context context, Bitmap source, int i) {
 
-        return source;
-    }
     public static void downloadWpp(final ImageView image2, final Context context, final boolean full, final String urlThumbnail, final String url, final int w, final int h) {         //Teste Downlaod Image como wpp
 
         final Transformation blurTransformation = new Transformation() {
@@ -335,7 +333,6 @@ public class ImageUtilities {
                 @Override
                 public Bitmap transform(Bitmap source) {
                     Log.d("Picaso", "Transformando");
-                    // @TODO MESMA COISA Q ANTES, O CERTO É: Blur.fastblur(context,source,radius), como tava dando erro deixei somente fastblur (método vazio criado lá encima )
                     Bitmap blurred = fastblur(context, source, radius);
                     source.recycle();
                     return blurred;

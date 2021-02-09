@@ -10,6 +10,8 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.tcc2.bke_auth4isp.R;
+import com.tcc2.bke_auth4isp.analytic_logs.YLog;
+import com.tcc2.bke_auth4isp.entity.Person;
 import com.tcc2.bke_auth4isp.login.LoginContracts;
 import com.tcc2.bke_auth4isp.login.presenter.LoginPresenter;
 import com.tcc2.bke_auth4isp.login.router.LoginRouter;
@@ -41,15 +43,9 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
         buttonConfirmLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                router.gotoHomeScreenClient();
+                System.out.println("Clicou:" + username.getText().toString() + password.getText().toString());
+                presenter.requestLogin(username.getText().toString(), password.getText().toString());
                 //TODO Conferir credenciais e redirecionar para a próxima página.
-            }
-        });
-
-        testClient.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                router.gotoHomeScreenClient();
             }
         });
 
@@ -69,12 +65,27 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
 
     }
 
-    //TODO FAZER método para checar credenciais do usuário.
-    public void checkUser(String username, String password) {
-    }
-
     @Override
     public Context getContext() {
         return getApplicationContext();
+    }
+
+    @Override
+    public void onLoginSucess(Person person) {
+        if (person.isClient()) {
+            YLog.d("LoginActivity", "onLoginSucess", "Usuário autenticado com sucesso: "+ person.getUsername() + "");
+            router.gotoHomeScreenClient(person);
+        } else if (person.isManager()) {
+            // TODO FAZER VIPER COM FIREBASE AQ
+        } else if (person.isTechnician()) {
+            // TODO FAZER VIPER COM FIREBASE AQ
+        } else {
+            onLoginError("Este usuário não tem um papel definido.");
+        }
+    }
+
+    @Override
+    public void onLoginError(String message) {
+        // @TODO IMPLEMENTAR EXIBIÇÃO DO DIÁLOGO.
     }
 }

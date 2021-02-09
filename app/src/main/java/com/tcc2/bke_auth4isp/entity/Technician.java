@@ -2,11 +2,10 @@ package com.tcc2.bke_auth4isp.entity;
 
 public class Technician extends Person {
 
-    // @TODO criar ArrayList de ISPs
     boolean certified;
 
-    public Technician(String nome, long cpf, long rg, long telefone, String isp, String url_photo) {
-        super(nome, cpf, rg, telefone, isp, url_photo);
+    public Technician(String name, String cpf, boolean client, boolean isTechnican, boolean isManager, String password, String username, long rg, String phone, String isp, String url_photo) {
+        super(name, cpf, client, isTechnican, isManager, password, username, rg, phone, isp, url_photo);
     }
 
     public boolean isCertified() {

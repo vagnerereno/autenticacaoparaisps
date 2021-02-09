@@ -40,7 +40,7 @@ public class ActivityCallEvaluation extends AppCompatActivity implements CallEva
         router = new CallEvaluationRouter(this, getContext());
 
         imageView = findViewById(R.id.photo_feedback);
-        technican_name = findViewById(R.id.technican_name);
+        technican_name = findViewById(R.id.client_name);
         isp_technican = findViewById(R.id.isp_technican);
         rate_technican_bar = (RatingBar) findViewById(R.id.rate_technican);
 

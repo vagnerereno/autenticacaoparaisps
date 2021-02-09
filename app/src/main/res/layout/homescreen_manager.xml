@@ -27,7 +27,7 @@
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/technican_name"
+            android:id="@+id/client_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/professional_city"
@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_below="@+id/technican_name"
+            android:layout_below="@+id/client_name"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginTop="40dp"
