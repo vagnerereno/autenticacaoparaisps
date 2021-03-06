@@ -20,11 +20,11 @@
         android:layout_marginTop="85dp">
 
         <TextView
-            android:id="@+id/professional_city"
+            android:id="@+id/technician_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="Olá, Técnico"
+            android:text=""
             android:textColor="@color/white"
             android:textAlignment="center"
             android:textSize="25dp"
@@ -34,7 +34,7 @@
             android:id="@+id/client_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/professional_city"
+            android:layout_below="@id/technician_name"
             android:layout_centerHorizontal="true"
             android:text="O que você deseja hoje?"
             android:textAlignment="center"

@@ -8,8 +8,8 @@ public interface LoginContracts {
 
     interface Router{
         void gotoHomeScreenClient(Person person);
-        void gotoHomeScreenTechican();
-        void gotoHomeScreenManager();
+        void gotoHomeScreenTechican(Person person);
+        void gotoHomeScreenManager(Person person);
     }
 
     interface Presenter {

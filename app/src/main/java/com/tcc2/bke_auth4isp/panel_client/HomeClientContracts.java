@@ -1,4 +1,4 @@
-package com.tcc2.bke_auth4isp.homepage_client;
+package com.tcc2.bke_auth4isp.panel_client;
 
 import android.content.Context;
 

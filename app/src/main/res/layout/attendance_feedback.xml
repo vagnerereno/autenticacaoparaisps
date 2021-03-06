@@ -60,14 +60,14 @@
                     android:id="@+id/isp_technican"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/client_name"
+                    android:layout_below="@id/technican_name"
                     android:layout_centerHorizontal="true"
                     android:text="@string/carregando"
                     android:textAlignment="center"
                     android:textSize="15dp" />
 
                 <TextView
-                    android:id="@+id/client_name"
+                    android:id="@+id/technican_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/photo_feedback"

@@ -17,8 +17,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewCalls"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="@color/colorAccent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite"
         android:layout_marginBottom="55dp"/>
 
 </RelativeLayout>

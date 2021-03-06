@@ -26,6 +26,14 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".call_evaluation.view.ActivityCallEvaluation">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".homepage_technican.view.ActivityHomeTechnican">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -52,7 +60,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".homepage_client.view.ActivityHomeClient">
+        <activity android:name=".panel_client.view.PanelClientActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -23,9 +23,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
     private Activity activity;
     EditText username;
     EditText password;
-    Button testClient;
-    Button testManager;
-    Button testTechican;
     Button buttonConfirmLogin;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +33,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
         activity = this;
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
-        testClient = findViewById(R.id.testCliente);
-        testManager = findViewById(R.id.testManager);
-        testTechican = findViewById(R.id.testTechinican);
         buttonConfirmLogin = findViewById(R.id.buttonLogin);
         buttonConfirmLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,21 +42,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
                 //TODO Conferir credenciais e redirecionar para a próxima página.
             }
         });
-
-        testManager.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                router.gotoHomeScreenManager();
-            }
-        });
-
-        testTechican.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                router.gotoHomeScreenTechican();
-            }
-        });
-
     }
 
     @Override
@@ -76,9 +55,9 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
             YLog.d("LoginActivity", "onLoginSucess", "Usuário autenticado com sucesso: "+ person.getUsername() + "");
             router.gotoHomeScreenClient(person);
         } else if (person.isManager()) {
-            // TODO FAZER VIPER COM FIREBASE AQ
+            router.gotoHomeScreenManager(person);
         } else if (person.isTechnician()) {
-            // TODO FAZER VIPER COM FIREBASE AQ
+            router.gotoHomeScreenTechican(person);
         } else {
             onLoginError("Este usuário não tem um papel definido.");
         }

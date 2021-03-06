@@ -14,13 +14,6 @@ public class CallEvaluationRouter implements CallEvaluationContracts.Router {
         this.mContexto = mContexto;
     }
 
-//    @Override
-//    public void gotoStartPointActivity() {
-//        Intent i = new Intent(mContexto, ActivityStartingPoint.class);
-//        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//        mContexto.startActivity(i);
-//    }
-
 
     private Context getContext() {
         return mContexto;

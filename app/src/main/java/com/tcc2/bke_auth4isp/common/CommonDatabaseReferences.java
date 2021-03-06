@@ -14,4 +14,19 @@ public class CommonDatabaseReferences {
         return reference;
     }
 
+    public static DatabaseReference getCallsReference(String username) {
+        DatabaseReference reference = getBaseRef().child("ISP").child("INTERNEITH").child("calls").child(username);
+        return reference;
+    }
+
+    public static DatabaseReference getFeedbacksReference(String username) {
+        DatabaseReference reference = getBaseRef().child("ISP").child("INTERNEITH").child("Feedback").child(username);
+        return reference;
+    }
+
+    public static DatabaseReference getTechnicianReference(String username) {
+        DatabaseReference reference = getBaseRef().child("ISP").child("INTERNEITH").child("person").child(username);
+        return reference;
+    }
+
 }

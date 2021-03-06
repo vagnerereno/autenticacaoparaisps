@@ -24,7 +24,8 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
-import com.tcc2.bke_auth4isp.calls.view.CallsFragment;
+import com.tcc2.bke_auth4isp.panel_client_calls.view.CallsFragment;
+import com.tcc2.bke_auth4isp.panel_client_home.view.HomeFragment;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
         iniciarComponentes();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, new HomeFragment()).commit();
 
         btn_leitura.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                     selectedFragment = new CallsFragment();
                     break;
             }
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, selectedFragment).commit();
 
             return true;
         }

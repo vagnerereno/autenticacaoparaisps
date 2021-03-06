@@ -10,6 +10,7 @@
     android:layout_marginTop="3dp"
     android:layout_marginRight="6dp"
     android:layout_marginBottom="3dp"
+    android:padding="4dp"
     android:background="#fff">
 
 
@@ -66,7 +67,7 @@
             android:layout_marginRight="6dp"
             android:layout_toRightOf="@+id/photoView"
             android:drawableLeft="@drawable/ic_call_check"
-            android:text="Certificado por Interneith" />
+            android:text="Técnico Certificado" />
 
         <TextView
             android:id="@+id/textViewDataTime"

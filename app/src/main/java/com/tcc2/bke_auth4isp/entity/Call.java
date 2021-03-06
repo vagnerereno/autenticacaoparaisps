@@ -1,59 +1,64 @@
 package com.tcc2.bke_auth4isp.entity;
 
-import java.util.Date;
+import java.io.Serializable;
 
-public class Call {
-    Client client;
-    Technician technician;
-    Manager manager;
-    ISP isp;
-    Date date;
+public class Call implements Serializable  {
 
-    public Call(Client client, Technician technician, Manager manager, ISP isp, Date date) {
-        this.client = client;
-        this.technician = technician;
-        this.manager = manager;
-        this.isp = isp;
+    String date;
+    long calls_id;
+    String name_techinician;
+    String username_techinician;
+    String username_client;
+
+    public Call(String date, long calls_id, String name_techinician, String username_techinician, String username_client) {
         this.date = date;
+        this.calls_id = calls_id;
+        this.name_techinician = name_techinician;
+        this.username_techinician = username_techinician;
+        this.username_client = username_client;
     }
 
-    public Date getDate() {
+    public Call (){
+
+    }
+
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public Client getClient() {
-        return client;
+    public long getCalls_id() {
+        return calls_id;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setCalls_id(long calls_id) {
+        this.calls_id = calls_id;
     }
 
-    public Technician getTechnician() {
-        return technician;
+    public String getName_techinician() {
+        return name_techinician;
     }
 
-    public void setTechnician(Technician technician) {
-        this.technician = technician;
+    public void setName_techinician(String name_techinician) {
+        this.name_techinician = name_techinician;
     }
 
-    public Manager getManager() {
-        return manager;
+    public String getUsername_techinician() {
+        return username_techinician;
     }
 
-    public void setManager(Manager manager) {
-        this.manager = manager;
+    public void setUsername_techinician(String username_techinician) {
+        this.username_techinician = username_techinician;
     }
 
-    public ISP getIsp() {
-        return isp;
+    public String getUsername_client() {
+        return username_client;
     }
 
-    public void setIsp(ISP isp) {
-        this.isp = isp;
+    public void setUsername_client(String username_client) {
+        this.username_client = username_client;
     }
 }

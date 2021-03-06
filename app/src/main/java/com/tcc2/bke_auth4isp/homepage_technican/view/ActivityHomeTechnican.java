@@ -5,10 +5,12 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.tcc2.bke_auth4isp.R;
+import com.tcc2.bke_auth4isp.entity.Person;
 import com.tcc2.bke_auth4isp.homepage_technican.HomeTechnicanContracts;
 import com.tcc2.bke_auth4isp.homepage_technican.presenter.HomeTechnicanPresenter;
 import com.tcc2.bke_auth4isp.homepage_technican.router.HomeTechnicanRouter;
@@ -20,6 +22,9 @@ public class ActivityHomeTechnican extends AppCompatActivity implements HomeTech
     private Activity activity;
     Button buttonGenerateQRCode;
     Button buttonAuthenticationClient;
+    Person person;
+    TextView technician_name;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,8 +32,11 @@ public class ActivityHomeTechnican extends AppCompatActivity implements HomeTech
         presenter = new HomeTechnicanPresenter(this);
         router = new HomeTechnicanRouter(getContext());
         activity = this;
+        person = (Person) getIntent().getSerializableExtra("PERSON");
         buttonGenerateQRCode = findViewById(R.id.buttonGenerateQRCode);
         buttonAuthenticationClient = findViewById(R.id.buttonAuthenticationTechnican);
+        technician_name = findViewById(R.id.technician_name);
+        technician_name.setText("Olá, " + person.getName());
 
         buttonGenerateQRCode.setOnClickListener(new View.OnClickListener() {
             @Override

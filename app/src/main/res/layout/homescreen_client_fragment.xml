@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".homepage_client.view.ActivityHomeClient"
+    tools:context=".panel_client.view.PanelClientActivity"
     android:id="@+id/login"
     android:background="@drawable/background_screens">
 
@@ -22,7 +22,7 @@
         android:layout_marginTop="85dp">
 
         <TextView
-            android:id="@+id/professional_city"
+            android:id="@+id/technician_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -36,7 +36,7 @@
             android:id="@+id/client_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/professional_city"
+            android:layout_below="@id/technician_name"
             android:layout_centerHorizontal="true"
             android:text="O que você deseja hoje?"
             android:textAlignment="center"
@@ -71,21 +71,6 @@
             android:text="Ler QR Code"
             android:padding="35dp"
             android:textColor="@color/white" />
-
-        <FrameLayout
-            android:id="@+id/fragment_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@id/bottom_navigation"/>
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            app:menu="@menu/bottom_navigation"
-            android:background="?android:attr/windowBackground"
-            />
 
     </RelativeLayout>
 

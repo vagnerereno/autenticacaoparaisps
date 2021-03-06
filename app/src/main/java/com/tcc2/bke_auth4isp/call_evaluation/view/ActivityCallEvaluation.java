@@ -2,6 +2,7 @@ package com.tcc2.bke_auth4isp.call_evaluation.view;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,7 +19,9 @@ import com.tcc2.bke_auth4isp.call_evaluation.CallEvaluationContracts;
 import com.tcc2.bke_auth4isp.call_evaluation.presenter.CallEvaluationPresenter;
 import com.tcc2.bke_auth4isp.call_evaluation.router.CallEvaluationRouter;
 import com.tcc2.bke_auth4isp.common.ImageUtilities;
-import com.tcc2.bke_auth4isp.entity.Technician;
+import com.tcc2.bke_auth4isp.entity.Call;
+import com.tcc2.bke_auth4isp.entity.Feedback;
+import com.tcc2.bke_auth4isp.entity.Person;
 
 public class ActivityCallEvaluation extends AppCompatActivity implements CallEvaluationContracts.View {
 
@@ -30,6 +33,8 @@ public class ActivityCallEvaluation extends AppCompatActivity implements CallEva
     private RatingBar rate_technican_bar;
     CallEvaluationContracts.Router router;
     ImageView imageView;
+    Call call;
+    Person person;
 
 
     @Override
@@ -38,19 +43,34 @@ public class ActivityCallEvaluation extends AppCompatActivity implements CallEva
         setContentView(R.layout.attendance_feedback);
         presenter = new CallEvaluationPresenter(this, getContext());
         router = new CallEvaluationRouter(this, getContext());
-
+        comments = findViewById(R.id.comments);
+        person = new Person();
         imageView = findViewById(R.id.photo_feedback);
-        technican_name = findViewById(R.id.client_name);
+        technican_name = findViewById(R.id.technican_name);
         isp_technican = findViewById(R.id.isp_technican);
         rate_technican_bar = (RatingBar) findViewById(R.id.rate_technican);
+        call = (Call) getIntent().getSerializableExtra("CALL");
+        try {
+            YLog.d("ActivityCallEvaluation", "onCreate", "Carregando informações do técnico.");
+            presenter.fetchTechnicianInformation(person);
+        } catch (Exception e) {
+            Log.d("ERROR RETRIVED: ", e.getLocalizedMessage());
+        }
 
-        comments.getText();
         try {
             buttonAvaiableTechnican = findViewById(R.id.buttonAvaiableTechnican);
             buttonAvaiableTechnican.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // @TODO FALTA CLICAR NESSE BOTÃO E AVALIAR O TÉCNICO.
+                    float rating = rate_technican_bar.getRating();
+                    String commentsText = String.valueOf(comments.getText());
+                    String technicanName = call.getName_techinician();
+                    String usernameClient = call.getUsername_client();
+                    String usernameTechnican = call.getUsername_techinician();
+
+                    presenter.saveFeedback(new Feedback(technicanName, usernameTechnican, usernameClient, commentsText, rating));
+                    YLog.d("ActivityCallEvaluation", "onClick", String.valueOf(rating));
+
                 }
             });
         } catch (Exception e) {
@@ -61,14 +81,9 @@ public class ActivityCallEvaluation extends AppCompatActivity implements CallEva
     @Override
     public void onFeedbackCreated(String message) {
         YLog.d("FeedbackSucessDialog", "onFeedbackCreated", message);
-        FeedbackSucessDialog dialogSucess = new FeedbackSucessDialog(this, message);
-    }
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 
-    @Override
-    public void showTechnicanInformation(Technician technician) {
-        technican_name.setText(technician.getName());
-        isp_technican.setText(technician.getIsp());
-        ImageUtilities.downloadWppFast(imageView, getApplicationContext(), technician.getUrl_photo().concat("?type=large"), 130, 150);
+//        FeedbackSucessDialog dialogSucess = new FeedbackSucessDialog(this, message);
     }
 
     @Override
@@ -77,14 +92,19 @@ public class ActivityCallEvaluation extends AppCompatActivity implements CallEva
     }
 
     @Override
-    public void showTechnicanRetrivingError(String message) {
-        YLog.d("ActivityFeedback", "showProfessionalRetrivingError", message);
-        Toast.makeText(this, "Existe um erro no cadastro: " + message, Toast.LENGTH_SHORT).show();
+    public void ShowErrorMessage(String error) {
+        Toast.makeText(this, "Erro ao avaliar profissional: " + error, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void ShowErrorMessage(String error) {
-        Toast.makeText(this, "Erro ao avaliar profissional: " + error, Toast.LENGTH_SHORT).show();
+    public void showTechnicanInformation(Person person) {
+        technican_name.setText(person.getName());
+        ImageUtilities.downloadWppFast(imageView, getApplicationContext(), person.getUrl_photo().concat("?type=large"), 130, 150);
+    }
+
+    @Override
+    public void showTechnicanRetrivingError(String localizedMessage) {
+        Toast.makeText(this, "Existe um erro no cadastro: " + localizedMessage, Toast.LENGTH_SHORT).show();
     }
 
 }

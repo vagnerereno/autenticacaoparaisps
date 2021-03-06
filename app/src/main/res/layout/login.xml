@@ -16,7 +16,7 @@
         android:layout_marginTop="85dp">
 
         <TextView
-            android:id="@+id/professional_city"
+            android:id="@+id/technician_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -30,7 +30,7 @@
             android:id="@+id/client_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/professional_city"
+            android:layout_below="@id/technician_name"
             android:layout_centerHorizontal="true"
             android:text="Entre com a sua conta"
             android:textAlignment="center"
@@ -83,36 +83,6 @@
             android:text="Entrar"
             android:padding="20dp"
             android:textColor="@color/white" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="3dp"
-            android:layout_marginEnd="3dp"
-            android:layout_marginTop="400dp">
-
-            <Button
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:text="CLIENTE"
-                android:layout_marginLeft="20dp"
-                android:id="@+id/testCliente"/>
-
-            <Button
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:text="TÉCNICO"
-                android:id="@+id/testTechinican"/>
-            <Button
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:text="GESTOR"
-                android:layout_marginRight="20dp"
-                android:id="@+id/testManager">
-            </Button>
-
-        </LinearLayout>
-
     </RelativeLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

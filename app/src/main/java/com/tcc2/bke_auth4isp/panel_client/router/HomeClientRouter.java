@@ -1,11 +1,11 @@
-package com.tcc2.bke_auth4isp.homepage_client.router;
+package com.tcc2.bke_auth4isp.panel_client.router;
 
 import android.content.Context;
 import android.content.Intent;
 
 import com.tcc2.bke_auth4isp.QRCode.ActivityGenerateQRCode;
 import com.tcc2.bke_auth4isp.QRCode.ActivityReadQRCode;
-import com.tcc2.bke_auth4isp.homepage_client.HomeClientContracts;
+import com.tcc2.bke_auth4isp.panel_client.HomeClientContracts;
 
 public class HomeClientRouter implements HomeClientContracts.Router {
 

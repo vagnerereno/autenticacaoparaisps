@@ -1,6 +1,6 @@
-package com.tcc2.bke_auth4isp.homepage_client.interactor;
+package com.tcc2.bke_auth4isp.panel_client.interactor;
 
-import com.tcc2.bke_auth4isp.homepage_client.HomeClientContracts;
+import com.tcc2.bke_auth4isp.panel_client.HomeClientContracts;
 
 public class HomeClientInteractor implements HomeClientContracts.Interactor {
 
