@@ -10,7 +10,7 @@ public class CommonDatabaseReferences {
     }
 
     public static DatabaseReference getLoginReference(String username) {
-        DatabaseReference reference = getBaseRef().child("ISP").child("INTERNEITH").child("person").child(username);
+        DatabaseReference reference = getBaseRef().child("ISP").child("INTERNEITH").child("User").child(username);
         return reference;
     }
 
@@ -24,8 +24,8 @@ public class CommonDatabaseReferences {
         return reference;
     }
 
-    public static DatabaseReference getTechnicianReference(String username) {
-        DatabaseReference reference = getBaseRef().child("ISP").child("INTERNEITH").child("person").child(username);
+    public static DatabaseReference getProfileReference(String username, String role) {
+        DatabaseReference reference = getBaseRef().child("ISP").child("INTERNEITH").child(role).child(username);
         return reference;
     }
 

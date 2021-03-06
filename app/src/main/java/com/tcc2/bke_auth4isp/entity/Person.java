@@ -5,43 +5,23 @@ import java.io.Serializable;
 public class Person implements Serializable {
 
     private String name;
+
     private String cpf;
-    boolean client;
-    boolean technician;
-    boolean manager;
-    public String password;
     public String username;
     private long rg;
     private String phone;
-    private String isp;
-    String url_photo;
 
-    public Person(String name, String cpf, boolean client, boolean technician, boolean manager,
-                  String password, String username, long rg, String phone, String isp, String url_photo) {
+    public Person(String name, String cpf, String username, long rg, String phone) {
         this.name = name;
         this.cpf = cpf;
-        this.client = client;
-        this.technician = technician;
-        this.manager = manager;
-        this.password = password;
         this.username = username;
         this.rg = rg;
         this.phone = phone;
-        this.isp = isp;
-        this.url_photo = url_photo;
     }
 
     public Person(){
 
     };
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getCpf() {
         return cpf;
@@ -51,36 +31,12 @@ public class Person implements Serializable {
         this.cpf = cpf;
     }
 
-    public boolean isClient() {
-        return client;
+    public String getName() {
+        return name;
     }
 
-    public void setIsClient(boolean client) {
-        client = client;
-    }
-
-    public boolean isTechnician() {
-        return technician;
-    }
-
-    public void setTechnician(boolean technician) {
-        this.technician = technician;
-    }
-
-    public boolean isManager() {
-        return manager;
-    }
-
-    public void setManager(boolean manager) {
-        this.manager = manager;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getUsername() {
@@ -105,22 +61,6 @@ public class Person implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public String getIsp() {
-        return isp;
-    }
-
-    public void setIsp(String isp) {
-        this.isp = isp;
-    }
-
-    public String getUrl_photo() {
-        return url_photo;
-    }
-
-    public void setUrl_photo(String url_photo) {
-        this.url_photo = url_photo;
     }
 
 }

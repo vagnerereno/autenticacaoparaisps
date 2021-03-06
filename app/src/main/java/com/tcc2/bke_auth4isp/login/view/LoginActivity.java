@@ -10,8 +10,6 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.tcc2.bke_auth4isp.R;
-import com.tcc2.bke_auth4isp.analytic_logs.YLog;
-import com.tcc2.bke_auth4isp.entity.Person;
 import com.tcc2.bke_auth4isp.login.LoginContracts;
 import com.tcc2.bke_auth4isp.login.presenter.LoginPresenter;
 import com.tcc2.bke_auth4isp.login.router.LoginRouter;
@@ -28,8 +26,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        presenter = new LoginPresenter(this);
         router = new LoginRouter(getContext());
+        presenter = new LoginPresenter(this, router);
         activity = this;
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
@@ -47,20 +45,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContracts.V
     @Override
     public Context getContext() {
         return getApplicationContext();
-    }
-
-    @Override
-    public void onLoginSucess(Person person) {
-        if (person.isClient()) {
-            YLog.d("LoginActivity", "onLoginSucess", "Usuário autenticado com sucesso: "+ person.getUsername() + "");
-            router.gotoHomeScreenClient(person);
-        } else if (person.isManager()) {
-            router.gotoHomeScreenManager(person);
-        } else if (person.isTechnician()) {
-            router.gotoHomeScreenTechican(person);
-        } else {
-            onLoginError("Este usuário não tem um papel definido.");
-        }
     }
 
     @Override

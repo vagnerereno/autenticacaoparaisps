@@ -4,8 +4,12 @@ public class Technician extends Person {
 
     boolean certified;
 
-    public Technician(String name, String cpf, boolean client, boolean isTechnican, boolean isManager, String password, String username, long rg, String phone, String isp, String url_photo) {
-        super(name, cpf, client, isTechnican, isManager, password, username, rg, phone, isp, url_photo);
+    public Technician(String name, String cpf, String username, long rg, String phone) {
+        super(name, cpf, username, rg, phone);
+    }
+
+    public Technician (){
+
     }
 
     public boolean isCertified() {

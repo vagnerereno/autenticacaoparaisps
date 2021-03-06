@@ -27,7 +27,6 @@ public class LoginRouter implements LoginContracts.Router {
     public void gotoHomeScreenClient(Person person){
 
         Intent i = new Intent(mContexto, PanelClientActivity.class);
-
         Bundle bundle = new Bundle();
         bundle.putSerializable("PERSON", person);
         i.putExtras(bundle);

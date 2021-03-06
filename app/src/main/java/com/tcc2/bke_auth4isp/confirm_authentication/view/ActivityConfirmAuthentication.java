@@ -12,7 +12,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.tcc2.bke_auth4isp.R;
-import com.tcc2.bke_auth4isp.common.ImageUtilities;
 import com.tcc2.bke_auth4isp.confirm_authentication.ConfirmAuthenticationContracts;
 import com.tcc2.bke_auth4isp.confirm_authentication.presenter.ConfirmAuthenticationPresenter;
 import com.tcc2.bke_auth4isp.confirm_authentication.router.ConfirmAuthenticationRouter;
@@ -52,17 +51,17 @@ public class ActivityConfirmAuthentication extends AppCompatActivity implements 
 
     @Override
     public void downloadTechnicianInformation(Technician technician){
-        nameConfirmation.setText(technician.getName());
-        txtViewIsp.setText(technician.getIsp());
-        ImageUtilities.downloadWppFast(photo_feedback, getApplicationContext(), technician.getUrl_photo().concat("?type=large"), 130, 150);
+//        nameConfirmation.setText(technician.getName());
+//        txtViewIsp.setText(technician.getIsp());
+//        ImageUtilities.downloadWppFast(photo_feedback, getApplicationContext(), technician.getUrl_photo().concat("?type=large"), 130, 150);
 
     }
 
     @Override
     public void downloadClientInformation(Client client){
-        nameConfirmation.setText(client.getName());
-        txtViewIsp.setText(client.getIsp());
-        ImageUtilities.downloadWppFast(photo_feedback, getApplicationContext(), client.getUrl_photo().concat("?type=large"), 130, 150);
+//        nameConfirmation.setText(client.getName());
+//        txtViewIsp.setText(client.getIsp());
+//        ImageUtilities.downloadWppFast(photo_feedback, getApplicationContext(), client.getUrl_photo().concat("?type=large"), 130, 150);
     }
 
     @Override

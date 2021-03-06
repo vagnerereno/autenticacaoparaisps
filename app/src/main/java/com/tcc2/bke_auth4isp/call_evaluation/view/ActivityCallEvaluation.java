@@ -18,7 +18,6 @@ import com.tcc2.bke_auth4isp.analytic_logs.YLog;
 import com.tcc2.bke_auth4isp.call_evaluation.CallEvaluationContracts;
 import com.tcc2.bke_auth4isp.call_evaluation.presenter.CallEvaluationPresenter;
 import com.tcc2.bke_auth4isp.call_evaluation.router.CallEvaluationRouter;
-import com.tcc2.bke_auth4isp.common.ImageUtilities;
 import com.tcc2.bke_auth4isp.entity.Call;
 import com.tcc2.bke_auth4isp.entity.Feedback;
 import com.tcc2.bke_auth4isp.entity.Person;
@@ -96,10 +95,11 @@ public class ActivityCallEvaluation extends AppCompatActivity implements CallEva
         Toast.makeText(this, "Erro ao avaliar profissional: " + error, Toast.LENGTH_SHORT).show();
     }
 
+    // @TODO VERIFICAR ISSO
     @Override
     public void showTechnicanInformation(Person person) {
-        technican_name.setText(person.getName());
-        ImageUtilities.downloadWppFast(imageView, getApplicationContext(), person.getUrl_photo().concat("?type=large"), 130, 150);
+//        technican_name.setText(person.getName());
+//        ImageUtilities.downloadWppFast(imageView, getApplicationContext(), person.getUrl_photo().concat("?type=large"), 130, 150);
     }
 
     @Override

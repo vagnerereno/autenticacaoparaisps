@@ -3,6 +3,7 @@ package com.tcc2.bke_auth4isp.login;
 import android.content.Context;
 
 import com.tcc2.bke_auth4isp.entity.Person;
+import com.tcc2.bke_auth4isp.entity.User;
 
 public interface LoginContracts {
 
@@ -14,6 +15,9 @@ public interface LoginContracts {
 
     interface Presenter {
         void requestLogin(String username, String password);
+
+        void authenticateLogin(String password, User user);
+
         void onLoginSucess(Person person);
         void onLoginError(String message);
     }
@@ -21,11 +25,11 @@ public interface LoginContracts {
     interface Interactor {
         void verifyLogin(String username, String password);
 
+        void downloadProfile(String username, String role);
     }
 
     interface  View {
        Context getContext();
-       void onLoginSucess(Person person);
        void onLoginError(String message);
     }
 
