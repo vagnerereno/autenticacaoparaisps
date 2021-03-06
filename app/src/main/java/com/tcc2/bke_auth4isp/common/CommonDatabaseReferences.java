@@ -15,7 +15,7 @@ public class CommonDatabaseReferences {
     }
 
     public static DatabaseReference getCallsReference(String username) {
-        DatabaseReference reference = getBaseRef().child("ISP").child("INTERNEITH").child("calls").child(username);
+        DatabaseReference reference = getBaseRef().child("ISP").child("INTERNEITH").child("Calls").child(username);
         return reference;
     }
 

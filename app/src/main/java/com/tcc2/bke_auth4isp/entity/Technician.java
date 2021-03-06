@@ -4,12 +4,22 @@ public class Technician extends Person {
 
     boolean certified;
 
+    String url_photo;
+
     public Technician(String name, String cpf, String username, long rg, String phone) {
         super(name, cpf, username, rg, phone);
     }
 
-    public Technician (){
+    public Technician (){}
 
+
+
+    public String getUrl_photo() {
+        return url_photo;
+    }
+
+    public void setUrl_photo(String url_photo) {
+        this.url_photo = url_photo;
     }
 
     public boolean isCertified() {
@@ -19,4 +29,5 @@ public class Technician extends Person {
     public void setCertified(boolean certified) {
         this.certified = certified;
     }
+
 }

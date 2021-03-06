@@ -12,6 +12,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tcc2.bke_auth4isp.R;
+import com.tcc2.bke_auth4isp.analytic_logs.YLog;
 import com.tcc2.bke_auth4isp.entity.Call;
 import com.tcc2.bke_auth4isp.panel_client_calls.CallsContracts;
 
@@ -90,9 +91,10 @@ public class AdapterCalls extends RecyclerView.Adapter<AdapterCalls.MyViewHolder
 //            e.printStackTrace();
 //        }
 
-//        holder.nameTechnican.setText(nameTechnican);
-//        holder.certificationTechnican.setText(certification);
+        YLog.d("AdapterCalls", "OnBindView", "Buscando nome do técnico: " + myCalls.get(position).getName_technician());
+        holder.nameTechnican.setText(call.getName_technician());
         holder.datatime.setText(call.getDate());
+//        holder.certificationTechnican.setText(certification);
 
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override

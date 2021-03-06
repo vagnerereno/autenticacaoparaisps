@@ -3,7 +3,7 @@ package com.tcc2.bke_auth4isp.call_evaluation;
 import android.content.Context;
 
 import com.tcc2.bke_auth4isp.entity.Feedback;
-import com.tcc2.bke_auth4isp.entity.Person;
+import com.tcc2.bke_auth4isp.entity.Technician;
 
 public interface CallEvaluationContracts {
 
@@ -20,9 +20,9 @@ public interface CallEvaluationContracts {
 
         void onFeedbackReceived(String message);
 
-        void fetchTechnicianInformation(Person person);
+        void fetchTechnicianInformation(String username_technician);
 
-        void onTechnicianReceived(Person person);
+        void onTechnicianReceived(Technician technician);
 
         void onTechnicianReceivedError(String localizedMessage);
     }
@@ -31,7 +31,7 @@ public interface CallEvaluationContracts {
 
         void saveNewFeedback(Feedback feedback);
 
-        void downloadTechnicianInformation(Person person);
+        void downloadTechnicianInformation(String username_technician);
     }
 
     interface  View {
@@ -42,7 +42,7 @@ public interface CallEvaluationContracts {
 
         void ShowErrorMessage(String error);
 
-        void showTechnicanInformation(Person person);
+        void showTechnicanInformation(Technician technician);
 
         void showTechnicanRetrivingError(String localizedMessage);
     }

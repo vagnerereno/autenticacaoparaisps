@@ -6,15 +6,15 @@ public class Call implements Serializable  {
 
     String date;
     long calls_id;
-    String name_techinician;
-    String username_techinician;
+    String name_technician;
+    String username_technician;
     String username_client;
 
-    public Call(String date, long calls_id, String name_techinician, String username_techinician, String username_client) {
+    public Call(String date, long calls_id, String name_technician, String username_technician, String username_client) {
         this.date = date;
         this.calls_id = calls_id;
-        this.name_techinician = name_techinician;
-        this.username_techinician = username_techinician;
+        this.name_technician = name_technician;
+        this.username_technician = username_technician;
         this.username_client = username_client;
     }
 
@@ -38,20 +38,20 @@ public class Call implements Serializable  {
         this.calls_id = calls_id;
     }
 
-    public String getName_techinician() {
-        return name_techinician;
+    public String getName_technician() {
+        return name_technician;
     }
 
-    public void setName_techinician(String name_techinician) {
-        this.name_techinician = name_techinician;
+    public void setName_technician(String name_technician) {
+        this.name_technician = name_technician;
     }
 
-    public String getUsername_techinician() {
-        return username_techinician;
+    public String getUsername_technician() {
+        return username_technician;
     }
 
-    public void setUsername_techinician(String username_techinician) {
-        this.username_techinician = username_techinician;
+    public void setUsername_technician(String username_technician) {
+        this.username_technician = username_technician;
     }
 
     public String getUsername_client() {

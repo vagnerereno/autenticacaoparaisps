@@ -18,22 +18,22 @@ import com.tcc2.bke_auth4isp.analytic_logs.YLog;
 import com.tcc2.bke_auth4isp.call_evaluation.CallEvaluationContracts;
 import com.tcc2.bke_auth4isp.call_evaluation.presenter.CallEvaluationPresenter;
 import com.tcc2.bke_auth4isp.call_evaluation.router.CallEvaluationRouter;
+import com.tcc2.bke_auth4isp.common.ImageUtilities;
 import com.tcc2.bke_auth4isp.entity.Call;
 import com.tcc2.bke_auth4isp.entity.Feedback;
-import com.tcc2.bke_auth4isp.entity.Person;
+import com.tcc2.bke_auth4isp.entity.Technician;
 
 public class ActivityCallEvaluation extends AppCompatActivity implements CallEvaluationContracts.View {
 
     CallEvaluationContracts.Presenter presenter;
     private Button buttonAvaiableTechnican;
     private TextView technican_name;
-    private TextView isp_technican;
+//    private TextView isp_technican;
     private EditText comments;
     private RatingBar rate_technican_bar;
     CallEvaluationContracts.Router router;
     ImageView imageView;
     Call call;
-    Person person;
 
 
     @Override
@@ -43,15 +43,17 @@ public class ActivityCallEvaluation extends AppCompatActivity implements CallEva
         presenter = new CallEvaluationPresenter(this, getContext());
         router = new CallEvaluationRouter(this, getContext());
         comments = findViewById(R.id.comments);
-        person = new Person();
         imageView = findViewById(R.id.photo_feedback);
         technican_name = findViewById(R.id.technican_name);
-        isp_technican = findViewById(R.id.isp_technican);
+//        isp_technican = findViewById(R.id.isp_technican);
         rate_technican_bar = (RatingBar) findViewById(R.id.rate_technican);
         call = (Call) getIntent().getSerializableExtra("CALL");
+        // @TODO Verificar se está pegando o nome do técnico certo.
+        technican_name.setText(call.getName_technician());
+
         try {
             YLog.d("ActivityCallEvaluation", "onCreate", "Carregando informações do técnico.");
-            presenter.fetchTechnicianInformation(person);
+            presenter.fetchTechnicianInformation(call.getUsername_technician());
         } catch (Exception e) {
             Log.d("ERROR RETRIVED: ", e.getLocalizedMessage());
         }
@@ -63,9 +65,9 @@ public class ActivityCallEvaluation extends AppCompatActivity implements CallEva
                 public void onClick(View v) {
                     float rating = rate_technican_bar.getRating();
                     String commentsText = String.valueOf(comments.getText());
-                    String technicanName = call.getName_techinician();
+                    String technicanName = call.getName_technician();
                     String usernameClient = call.getUsername_client();
-                    String usernameTechnican = call.getUsername_techinician();
+                    String usernameTechnican = call.getUsername_technician();
 
                     presenter.saveFeedback(new Feedback(technicanName, usernameTechnican, usernameClient, commentsText, rating));
                     YLog.d("ActivityCallEvaluation", "onClick", String.valueOf(rating));
@@ -95,11 +97,10 @@ public class ActivityCallEvaluation extends AppCompatActivity implements CallEva
         Toast.makeText(this, "Erro ao avaliar profissional: " + error, Toast.LENGTH_SHORT).show();
     }
 
-    // @TODO VERIFICAR ISSO
     @Override
-    public void showTechnicanInformation(Person person) {
-//        technican_name.setText(person.getName());
-//        ImageUtilities.downloadWppFast(imageView, getApplicationContext(), person.getUrl_photo().concat("?type=large"), 130, 150);
+    public void showTechnicanInformation(Technician technician) {
+        technican_name.setText(technician.getName());
+        ImageUtilities.downloadWppFast(imageView, getApplicationContext(), technician.getUrl_photo().concat("?type=large"), 130, 150);
     }
 
     @Override

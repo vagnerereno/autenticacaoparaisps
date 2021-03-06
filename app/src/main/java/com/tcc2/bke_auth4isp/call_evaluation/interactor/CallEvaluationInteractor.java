@@ -1,5 +1,7 @@
 package com.tcc2.bke_auth4isp.call_evaluation.interactor;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.google.firebase.database.DataSnapshot;
@@ -10,7 +12,7 @@ import com.tcc2.bke_auth4isp.analytic_logs.YLog;
 import com.tcc2.bke_auth4isp.call_evaluation.CallEvaluationContracts;
 import com.tcc2.bke_auth4isp.common.CommonDatabaseReferences;
 import com.tcc2.bke_auth4isp.entity.Feedback;
-import com.tcc2.bke_auth4isp.entity.Person;
+import com.tcc2.bke_auth4isp.entity.Technician;
 
 public class CallEvaluationInteractor implements CallEvaluationContracts.Interactor {
 
@@ -46,30 +48,26 @@ public class CallEvaluationInteractor implements CallEvaluationContracts.Interac
 
     // @TODO VERIFICAR ISSO
     @Override
-    public void downloadTechnicianInformation(Person person) {
-//        CommonDatabaseReferences.getTechnicianReference(person.getUsername()).addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                try {
-//                    YLog.d("CallEvaluationInteractor", "downloadTechnicianInformation", "Fazendo download das informações do técnico no Firebase.");
-//                    if (person.isTechnician()) {
-//                        Person person = snapshot.getValue(Person.class);
-//                        Log.d("RETRIVED NAME: ", person.getName());
-//                        Log.d("RETRIVED NAME: ", person.getUsername());
-//                        presenter.onTechnicianReceived(person);
-//                    }
-//                } catch (Exception e) {
-//                    Log.d("ERROR RETRIVED: ", e.getLocalizedMessage());
-//                    presenter.onTechnicianReceivedError(e.getLocalizedMessage());
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                Log.d("RETRIVED CATEGORY: ", error.getMessage());
-//            }
-//        });
-//
+    public void downloadTechnicianInformation(String username_technician) {
+        CommonDatabaseReferences.getProfileReference(username_technician, "Technician").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                try {
+                    YLog.d("CallEvaluationInteractor", "downloadTechnicianInformation", "Fazendo download das informações do técnico no Firebase.");
+                    Technician technician = snapshot.getValue(Technician.class);
+                        presenter.onTechnicianReceived(technician);
+                } catch (Exception e) {
+                    Log.d("ERROR RETRIVED: ", e.getLocalizedMessage());
+                    presenter.onTechnicianReceivedError(e.getLocalizedMessage());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d("RETRIVED CATEGORY: ", error.getMessage());
+            }
+        });
+
     }
 
 }

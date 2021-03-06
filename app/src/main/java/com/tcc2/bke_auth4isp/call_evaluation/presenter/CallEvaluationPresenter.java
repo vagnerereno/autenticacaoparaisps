@@ -7,7 +7,7 @@ import com.tcc2.bke_auth4isp.analytic_logs.YLog;
 import com.tcc2.bke_auth4isp.call_evaluation.CallEvaluationContracts;
 import com.tcc2.bke_auth4isp.call_evaluation.interactor.CallEvaluationInteractor;
 import com.tcc2.bke_auth4isp.entity.Feedback;
-import com.tcc2.bke_auth4isp.entity.Person;
+import com.tcc2.bke_auth4isp.entity.Technician;
 
 public class CallEvaluationPresenter implements CallEvaluationContracts.Presenter {
 
@@ -38,14 +38,14 @@ public class CallEvaluationPresenter implements CallEvaluationContracts.Presente
     }
 
     @Override
-    public void fetchTechnicianInformation(Person person) {
+    public void fetchTechnicianInformation(String username_technician) {
         YLog.d("CallEvaluationPresenter", "fetchTechnicianInformation", "Fazendo download das informações do técnico.");
-        interactor.downloadTechnicianInformation(person);
+        interactor.downloadTechnicianInformation(username_technician);
     }
 
     @Override
-    public void onTechnicianReceived(Person person) {
-        view.showTechnicanInformation(person);
+    public void onTechnicianReceived(Technician technician) {
+        view.showTechnicanInformation(technician);
     }
 
     @Override
